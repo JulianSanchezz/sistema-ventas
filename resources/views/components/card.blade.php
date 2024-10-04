@@ -10,6 +10,8 @@
         {{$slot}}
     </div>
     <div class="card-footer">
-        {{$cardFooter}}
+        <div class="float-right"> <!-- clase para que flote hacia la derecha-->
+            {{$cardFooter}}
+        </div>
     </div>
 </div>
