@@ -1,66 +1,75 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Tareas Realizadas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Tareas realizadas por Julian Sanchez
 
-## About Laravel
+### Categorías:
+- Mostrar una tabla con las categorías (nombre), con opciones para editar, ver y eliminar cada categoría.
+- Input para realizar búsquedas de categorías.
+- Mostrar la cantidad de categorías.
+- *Tiempo estimado:* 3 días.
+- *Tiempo real:* 12hs.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Productos:
+- Mostrar una tabla con las imágenes, nombre, precio de venta, stock, categoría relacionada, y estado de los productos.
+- Funciones para ver el producto, editarlo, eliminarlo, y agregar stock.
+- Input para realizar búsquedas por nombre de los productos.
+- Botón para crear un nuevo producto.
+- Mostrar la cantidad de productos.
+- *Tiempo estimado:* 5 días.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Inicio:
+- Mostrar la cantidad de productos/artículos vendidos y las ventas realizadas en el día.
+- Mostrar la cantidad de ventas y el monto total de las ventas realizadas.
+- *Tiempo estimado:* 2 días.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Módulo Negocio/Empresa:
+- Mostrar el nombre, CUIT/CUIL de la empresa, eslogan de la empresa o negocio, mail, celular y dirección.
+- *Tiempo estimado:* 2 días.
 
-## Learning Laravel
+### Módulo Crear Clientes:
+- Registrar los datos del cliente para adjuntar a la venta.
+- *Tiempo estimado:* 2 días.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Módulo Ventas:
+- Crear una venta.
+- Filtrar ventas por fecha.
+- Mostrar en una tabla: nombre del cliente, cantidad de productos comprados, total a abonar, y fecha.
+- Facturación con AFIP.
+- Funciones para ver la venta, editarla o eliminarla.
+- *Tiempo estimado:* 4 días.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Módulo Usuario:
+- Crear usuarios.
+- Restringir el acceso al sistema según el rol del usuario.
+- *Tiempo estimado:* 3 días.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Tareas realizadas por Nazarena Alvarez
 
-## Laravel Sponsors
+### Módulo Login:
+- Restringir el acceso a usuarios vendedores.
+- Dar acceso a todos los módulos a usuarios administradores.
+- *Tiempo estimado:* 2 días.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Módulo NavBar:
+- Mostrar el nombre del usuario logueado.
+- Botón/icono que direccione al inicio si se está en otro módulo.
+- *Tiempo estimado:* 1 día.
 
-### Premium Partners
+### Otros Módulos:
+- Módulo Usuario.
+- Módulo Tienda/Comercio (colaboración en ambos módulos).
+- Facturación (investigado y pendiente de realizar al final).
+- Pruebas unitarias.
+- Implementación responsive.
+- *Tiempo estimado para módulos colaborativos:* 4 días.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Errores durante el desarrollo
 
-## Contributing
+### Categorías:
+- **Error encontrado:** Problema con la compatibilidad entre las clases de Bootstrap 5.2 y Bootstrap 4.6, que es la versión utilizada por AdminLTE.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Información pendiente de agregar
 
-## Code of Conduct
+## Tiempo Real por Módulo
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Información pendiente de agregar.
