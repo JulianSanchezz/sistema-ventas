@@ -15,7 +15,7 @@
     </div>
 </div>
 <div class="table-responsive">
-    <table class="table">
+    <table class="table table-striped table-over">
         <thead>
             <tr>
                 {{$thead}}

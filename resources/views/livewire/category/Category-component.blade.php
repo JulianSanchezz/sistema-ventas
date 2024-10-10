@@ -57,7 +57,7 @@
 
 
         <x-modal modalId="modalCategory" modalTitle="Categorias">
-            <form wire:submit={{$Id= 0 ? "store" : "update($Id)"}}>
+            <form wire:submit.prevent="{{ $Id == 0 ? 'store' : 'update(' . $Id . ')' }}">
                 <div class="form-row">
                     <div class="form-group col-12">
                         <label for="name">Nombre:</label>
@@ -69,7 +69,8 @@
                 </div>
 
                 <hr>
-                <button class="btn btn-primary float-right">{{$Id=0 ? 'Guardar' : 'Editar'}}</button>
+                <button class="btn btn-primary float-right">{{ $Id == 0 ? 'Guardar' : 'Editar' }}</button>
+
             </form>
         </x-modal>
  </div>

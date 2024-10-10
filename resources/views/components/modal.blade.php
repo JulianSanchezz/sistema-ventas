@@ -1,7 +1,7 @@
 @props(['modalTitle'=>'','modalId'=>'','modalSize'=>''])
 <!-- Modal -->
 <div wire:ignore.self class="modal fade" id="{{$modalId}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog">
+    <div class="modal-dialog {{$modalSize}}">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="{{$modalTitle}}">Modal title</h5>

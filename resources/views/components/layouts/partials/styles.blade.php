@@ -9,3 +9,5 @@
 
     <!-- Sweet Alert -->
     <link rel="stylesheet" href="{{asset('plugins/sweetalert2/sweetalert2.css')}}">
+<!-- libreria check -->
+    <link rel="stylesheet" href="{{asset('plugins/icheck-boostrap/icheck-boostrap.min.css')}}">
