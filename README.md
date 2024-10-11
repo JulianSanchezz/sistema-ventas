@@ -68,6 +68,9 @@
 ### Categorías:
 - **Error encontrado:** Problema con la compatibilidad entre las clases de Bootstrap 5.2 y Bootstrap 4.6, que es la versión utilizada por AdminLTE.
 
+### Pruebas Unitarias:
+- **Error encontrado:** Al realizar pruebas unitarias con el componente de Livewire para las categorías, se presentó el error `A facade root has not been set.` Este error ocurrió porque la referencia a `PHPUnit\Framework\TestCase` no estaba correctamente configurada para el contexto de pruebas unitarias. Cambié la referencia a `Tests\TestCase`, lo que permitió que las pruebas unitarias se ejecutaran correctamente sin la necesidad de depender de un entorno de prueba de características.
+
 Información pendiente de agregar
 
 ## Tiempo Real por Módulo
