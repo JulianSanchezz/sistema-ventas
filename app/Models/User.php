@@ -41,4 +41,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //metodo image usamos relacion poliformica 1a1, le pasamos el model de image, primer parametro ruta segundo paramtro la funcion damos la posibilidad de tener imagen debe tener este metodo
+    public function image(){
+        return $this->morphOne('App\Models\Image','imageable');
+
+    }
+
 }

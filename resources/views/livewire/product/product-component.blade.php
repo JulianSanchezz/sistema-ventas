@@ -1,6 +1,4 @@
 <div>
-
-
     <x-card cardTitle='Listado Productos ({{$this->totalRegistros}})'> {{-- pasamos los nombres a las variables de lo que deseamos en el titulo del componente--}}
  
              <x-slot:cardTools>
@@ -24,11 +22,13 @@
                 </x-slot:thead>
              
                 @forelse ($products as $product)
-                    
-                
+                               
                       <tr>
                          <td>{{$product->id}}</td>
-                         <td>imagen</td>
+                         
+                         <td>
+                            <x-image :item="$product" />
+                         </td>
                          <td>{{$product->name}}</td>
                          <td>{{$product->precio_venta}}</td>
                          <td>{{$product->stock}}</td>

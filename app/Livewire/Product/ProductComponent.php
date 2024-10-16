@@ -2,13 +2,21 @@
 
 namespace App\Livewire\Product;
 
+use App\Models\Category;
 use App\Models\Product;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\Attributes\Title;
+use Livewire\WithFileUploads;
+use Livewire\WithPagination;
 
 #[Title('Productos')]
 class ProductComponent extends Component
 {
+
+    use WithFileUploads;
+    use WithPagination;
+
     //propiedades clase
     public $search='';
     public $totalRegistros=0;
@@ -22,16 +30,14 @@ class ProductComponent extends Component
     public $precio_compra;
     public $precio_venta;
     public $codigo_barras;
-    public $stock=10;
-    public $stock_minimo;
+    public $stock=0;
+    public $stock_minimo=10;
     public $fecha_vencimiento;
     public $active=1;
     public $image;
 
     public function render()
     {
-        $this->dispatch('open-modal','modalProduct');
-
         $this->totalRegistros = Product::count();
 
         $products = Product::where('name', 'like', '%'. $this->search .'%')
@@ -42,6 +48,10 @@ class ProductComponent extends Component
         return view('livewire.product.product-component', ['products' => $products]);
     }
 
+    #[Computed()] //propiedad computada
+    public function categories(){
+        return Category::all();
+    }
 
     public function create(){
 
@@ -74,15 +84,35 @@ class ProductComponent extends Component
 
          $this->validate($rules);
 
-        // $category = new Product();
-        // $category->name = $this->name;
-        // $category->save();
+         $product = new Product();   
+        
+         $product->name = $this->name;
+         $product->descripcion = $this->descripcion;
+         $product->precio_compra = $this->precio_compra;
+         $product->precio_venta = $this->precio_venta;
+         $product->stock = $this->stock;
+         $product->stock_minimo = $this->stock_minimo;
+         $product->codigo_barras = $this->codigo_barras;
+         $product->fecha_vencimiento = $this->fecha_vencimiento;
+         $product->category_id = $this->category_id;
+         $product->active = $this->active;
+         $product->save();
+         
+         //si hay alguna imagen la procesamos. en la variable guardamos un nombre unico uniqid para la imagen definiendo un directorio products extraemos su extension y la subimos 
+         if($this->image){
+            $customName = 'products/'.uniqid().'.'.$this->image->extension();
+            $this->image->storeAs('public',$customName);
+            $product->image()->create(['url'=>$customName]);
+            // Almacena la imagen asociada al producto usando la relación polimórfica
+        }
+        
+         $this->dispatch('close-modal','modalProduct');
+         $this->dispatch('msg','Producto creada correctamente');
+         $this->clean();
+    }
 
-        // $this->dispatch('close-modal','modalCategory');
-        // $this->dispatch('msg','Categoria creada correctamente');
-
-        // $this->reset(['name']);
-
+    public function clean(){
+        $this->reset(['Id','name','image','descripcion','precio_compra','precio_venta','stock','stock_minimo','codigo_barras','fecha_vencimiento','active','category_id']);
     }
 
 }
