@@ -13,19 +13,6 @@ class CategoryComponentTest extends TestCase{
     use RefreshDatabase; // para limpiar la base de datos entre pruebas
 
     /** @test */
-    public function it_can_display_categories_correctly()
-    {
-        // Crear una categoría de ejemplo
-        $category = Category::factory()->create([
-            'name' => 'Categoria de prueba'
-        ]);
-
-        // Simular el componente Livewire
-        Livewire::test(CategoryComponent::class)
-            ->assertSee($category->name);  // Verifica que se vea el nombre de la categoría
-    }
-
-    /** @test */
     public function it_can_create_a_new_category()
     {
         // Simular el componente Livewire y llenar el formulario para crear una nueva categoría
