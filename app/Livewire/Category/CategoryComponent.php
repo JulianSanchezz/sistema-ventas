@@ -84,8 +84,6 @@ class CategoryComponent extends Component
             $this->name = $category->name; //almacenamos lo que hay en el objeto categoria luego de llenar el form se abre el formulario.
             $this->dispatch('open-modal','modalCategory');
             
-
-
             //dump($category);
     }
 

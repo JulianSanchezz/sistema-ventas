@@ -30,10 +30,12 @@
                             <x-image :item="$product" />
                          </td>
                          <td>{{$product->name}}</td>
-                         <td>{{$product->precio_venta}}</td>
-                         <td>{{$product->stock}}</td>
-                         <td>{{$product->category_id}}</td>
-                         <td>Active</td>
+                         <td>{!! $product->precio !!}</td>
+                         <td>{!! $product->stockLabel !!}</td>
+                         <td>
+                            <a class="badge badge-secondary" href="{{route('categories.show',$product->category->id)}}">{{$product->category->name}}</a>
+                         </td>
+                         <td>{!! $product->activeLabel !!}</td>
                          <td>
                             <a href="{{route('products.show',$product)}}" title="Ver" class="btn btn-success btn-xs">
                                 <i class="far fa-eye"></i>
