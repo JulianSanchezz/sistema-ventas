@@ -47,6 +47,7 @@
                             </a>
                          </td>
                          <td>
+                              <!--Emitemos un evento que pasamos el id del producto y segundo parametro el nombre del evento a ejecutar -->
                             <a wire:click="$dispatch('delete', { id: {{$product->id}}, eventName: 'destroyProduct' })" title="Eliminar" class="btn btn-danger btn-xs">
                                 <i class="far fa-trash-alt"></i>
                             </a>                            

@@ -52,4 +52,14 @@ class Product extends Model
         );
     }
 
+    //retornamos la ruta para la imagen y si el produto no tiene imagen definiada devuelve la imagen de ejemplo
+    protected function imagen() : Attribute
+    {
+        return Attribute::make(
+            get: function(){
+                return $this->image ? Storage::url('public/'.$this->image->url) : asset('no-image.png'); 
+            }
+        );
+    }
+
 }

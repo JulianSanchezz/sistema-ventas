@@ -10,6 +10,7 @@ use Livewire\Attributes\Title;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 
 #[Title('Productos')]
 class ProductComponent extends Component
@@ -114,6 +115,21 @@ class ProductComponent extends Component
     }
 
 
+    #[On('destroyProduct')]
+    public function destroy($id){
+        // dump($id);
+        $product = Product::findOrfail($id);
+
+        //si tiene una imagen definida entonces eliminamos la img del servidor, luego el registro en la bd, luego se emite evento
+        if($product->image!=null){
+            Storage::delete('public/'.$product->image->url);
+            $product->image()->delete();
+        }
+
+        $product->delete();
+
+        $this->dispatch('msg','Producto eliminado correctamente.');
+    }
 
     public function edit(Product $product){
       
