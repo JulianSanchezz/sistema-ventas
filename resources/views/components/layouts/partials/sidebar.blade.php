@@ -51,6 +51,15 @@
           </a>
       </li>
 
+      <li class="nav-item">
+        <a href="{{route('users')}}" class="nav-link">
+          <i class="mav-icon fas fa-users"></i>
+          <p>
+            Usuarios
+          </p>
+        </a>
+    </li>
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

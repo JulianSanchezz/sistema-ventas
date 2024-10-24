@@ -3,7 +3,7 @@
  
              <x-slot:cardTools>
                    <a href="#" class="btn btn-primary" wire:click='create'>
-                    <i class="fas fa-plus-circle"></i>Crear Producto</a>
+                    <i class="fas fa-plus-circle mr-2"></i>Crear Producto</a>
              </x-slot:cardTools>
                 
              <x-table>
@@ -30,10 +30,12 @@
                             <x-image :item="$product" />
                          </td>
                          <td>{{$product->name}}</td>
-                         <td>{{$product->precio_venta}}</td>
-                         <td>{{$product->stock}}</td>
-                         <td>{{$product->category_id}}</td>
-                         <td>Active</td>
+                         <td>{!! $product->precio !!}</td>
+                         <td>{!! $product->stockLabel !!}</td>
+                         <td>
+                            <a class="badge badge-secondary" href="{{route('categories.show',$product->category->id)}}">{{$product->category->name}}</a>
+                         </td>
+                         <td>{!! $product->activeLabel !!}</td>
                          <td>
                             <a href="{{route('products.show',$product)}}" title="Ver" class="btn btn-success btn-xs">
                                 <i class="far fa-eye"></i>
@@ -45,6 +47,7 @@
                             </a>
                          </td>
                          <td>
+                              <!--Emitemos un evento que pasamos el id del producto y segundo parametro el nombre del evento a ejecutar -->
                             <a wire:click="$dispatch('delete', { id: {{$product->id}}, eventName: 'destroyProduct' })" title="Eliminar" class="btn btn-danger btn-xs">
                                 <i class="far fa-trash-alt"></i>
                             </a>                            

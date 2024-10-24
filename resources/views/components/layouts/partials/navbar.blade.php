@@ -14,18 +14,8 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item">
-          <form action="simple-results.html">
-            <div class="input-group">
-                <input type="search" class="form-control" placeholder="Buscar Producto...">
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </form>
+        @livewire('search')
       </li>
-
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
           <img src="{{asset('dist/img/avatar5.png')}}" class="user-image img-circle elevation-2" alt="User Image">

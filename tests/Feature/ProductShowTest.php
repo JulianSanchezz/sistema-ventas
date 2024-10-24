@@ -24,7 +24,7 @@ class ProductShowTest extends TestCase
         $product = Product::factory()->create([
             'name' => 'Producto de prueba',
             'category_id' => $category->id,
-            'precio_venta' => 20.50,
+            'precio_venta' => 20000,
             'stock' => 50, 
         ]);
 
@@ -32,7 +32,7 @@ class ProductShowTest extends TestCase
         Livewire::test(ProductComponent::class)
             ->assertSee($product->name)  // Verifica que se vea el nombre del producto
             ->assertSee($category->name)  // Verifica que se vea la categoría asociada
-            ->assertSee($product->precio_venta)  // Verifica que se vea el precio
+            ->assertSee('$20.000')  // Verifica que se vea el precio
             ->assertSee($product->stock); // Verifica que se vea el stock
 
     }
