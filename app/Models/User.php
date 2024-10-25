@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class User extends Authenticatable
 {
@@ -41,6 +42,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //creacion de atributo 
+    protected function activeLabel() : Attribute
+    {
+        return Attribute::make(
+            get: function(){
+                return $this->attributes['active'] ? '<span class="badge badge-success">Activo</span>' : '<span class="badge badge-warning">Inactivo</span>'; 
+            }
+        );
+    }  
 
     //metodo image usamos relacion poliformica 1a1, le pasamos el model de image, primer parametro ruta segundo paramtro la funcion damos la posibilidad de tener imagen debe tener este metodo
     public function image(){
