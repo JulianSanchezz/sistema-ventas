@@ -3,7 +3,7 @@
  
              <x-slot:cardTools>
                    <a href="#" class="btn btn-primary" wire:click='create'>
-                    <i class="fas fa-plus-circle"></i>Crear Producto</a>
+                    <i class="fas fa-plus-circle mr-2"></i>Crear Producto</a>
              </x-slot:cardTools>
                 
              <x-table>

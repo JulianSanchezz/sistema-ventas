@@ -5,8 +5,9 @@
  
              <x-slot:cardTools>
                    <a href="#" class="btn btn-primary" wire:click='create'>
-                    <i class="fas fa-plus-circle"></i>Crear Categoria</a>
+                    <i class="fas fa-plus-circle mr-2"></i>Crear Categoria</a>
              </x-slot:cardTools>
+
                 
              <x-table>
                 <x-slot:thead>

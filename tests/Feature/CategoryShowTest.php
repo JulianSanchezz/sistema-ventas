@@ -23,4 +23,6 @@ class CategoryShowTest extends TestCase
         Livewire::test('category.category-show', ['category' => $category])
             ->assertSee($category->name); // Verifica que se vea el nombre de la categoría
     }
+
+    
 }
