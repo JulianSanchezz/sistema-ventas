@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('identificacion');
             $table->string('telefono')->nullable();
             $table->string('email')->nullable();
-            $table->string('nit')->nullable();
+            $table->string('empresa')->nullable();
+            $table->string('cuit')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::table('clients', function (Blueprint $table) {
+            $table->dropColumn('empresa');
+        });
     }
 };
