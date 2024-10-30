@@ -9,7 +9,7 @@ use App\Models\Item;
 class ImageComponentTest extends TestCase
 {
         /** @test */
-        public function it_checks_image_and_properties_of_item()
+        public function test_it_checks_image_and_properties_of_item()
         {
             // Creamos un item con un valor para 'image'
             $item = new Item();

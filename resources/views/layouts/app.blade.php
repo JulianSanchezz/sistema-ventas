@@ -15,40 +15,32 @@
 
     <!-- Scripts -->
     {{-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
-    <link rel="stylesheet" href="{{ asset('css/bootstrap@5.3.3.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap@5.3.3.min.css') }}"> 
 
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
 </head>
-<body>
+<body class="hold-transition login-page">
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand navbar-dark bg-dark shadow-sm">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ">
                         <!-- Authentication Links -->
                         @guest
-                            {{-- @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
-                                </li>
-                            @endif  --}}
-
                             @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <li class="nav-item ms-auto">
+                                    <a class="nav-link text-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -75,7 +67,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-5" style="min-height: 100vh; background-color: #6c757d">
             @yield('content')
         </main>
     </div>

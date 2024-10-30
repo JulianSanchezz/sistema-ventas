@@ -28,7 +28,7 @@ use App\Livewire\Sale\SaleCreate;
 //     return view('welcome');
 // });
 
-Auth::routes(['register'=>false]);
+Auth::routes(['register'=>true]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

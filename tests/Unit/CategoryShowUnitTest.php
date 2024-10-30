@@ -10,7 +10,7 @@ use Tests\TestCase;
 class CategoryShowTest extends TestCase
 {
     /** @test */
-    public function it_can_initialize_with_a_category()
+    public function test_it_can_initialize_with_a_category()
     {
         // Crear una categoría para la prueba
         $category = Category::factory()->create(['name' => 'Categoría de Prueba']);

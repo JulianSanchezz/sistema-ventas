@@ -16,7 +16,7 @@ class ProductComponentTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function it_can_create_a_new_product()
+    public function test_it_can_create_a_new_product()
     {
         // Crear una categoría para asociar el nuevo producto
         $category = Category::factory()->create([
@@ -41,7 +41,7 @@ class ProductComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_validates_product_creation_fields()
+    public function test_it_validates_product_creation_fields()
     {
         Livewire::test(ProductComponent::class)
             ->set('name', '')  // Nombre vacío para forzar la validación
@@ -51,7 +51,7 @@ class ProductComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_can_delete_a_product_and_its_image()
+    public function test_it_can_delete_a_product()
     {
     
         // Crear categoría y producto
@@ -72,7 +72,7 @@ class ProductComponentTest extends TestCase
     }
 
     /** @test */
-    public function it_can_edit_a_product()
+    public function test_it_can_update_a_product()
     {
         // Crea una categoría para asociar con el producto
         $category = Category::factory()->create();
