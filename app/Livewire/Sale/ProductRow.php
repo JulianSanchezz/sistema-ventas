@@ -15,7 +15,11 @@ class ProductRow extends Component
     protected function getListeners()
     {
         return[
-            "decrementStock.{$this->product->id}" => "decrementStock"
+            "decrementStock.{$this->product->id}" => "decrementStock",
+            "incrementStock.{$this->product->id}" =>"incrementStock",
+            "refreshProducts" => "mount",
+            "devolverStock.{$this->product->id}" => "devolverStock",
+            // "refreshProducts" => "refreshStock"
         ];
     }
 
@@ -28,6 +32,7 @@ class ProductRow extends Component
     public function mount(){
 
         $this->stock= $this->product->stock;
+        $this->render();
 
     }
 
@@ -42,9 +47,24 @@ class ProductRow extends Component
 
 
     public function decrementStock(){
-
         $this->stock--;
+    }
 
+    public function incrementStock(){
+        if($this->stock==$this->product->stock-1){
+            return;
+        }else{
+            $this->stock++;
+        }
+       
+    }
+
+
+    public function devolverStock($qty){
+
+        $this->stock = $this->stock+$qty;
+
+       
     }
 
     public function stockLabel(){
@@ -55,5 +75,11 @@ class ProductRow extends Component
             return '<span class="badge badge-pill badge-success">'.$this->stock.'</span>';
         }
     }
+
+    //  public function refreshStock()
+    //  {
+    //      $this->stock = $this->product->fresh()->stock; // Recargar el stock real desde la base de datos
+    //      $this->render(); // Actualizar el renderizado del componente
+    //  }
 
 }

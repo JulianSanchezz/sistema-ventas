@@ -57,21 +57,22 @@ class SaleCreate extends Component
     public function decrement($id){
 
         Cart::decrement($id);
+        $this->dispatch("incrementStock.{$id}");
     }
 
 
     //incrementar cantidad
     public function increment($id){
-
         Cart::increment($id);
         $this->dispatch("decrementStock.{$id}");
     }
 
 
     //Eliminar item de carrito
-    public function removeItem($id){
+    public function removeItem($id,$qty){
 
         Cart::removeItem($id);
+        $this->dispatch("devolverStock.{$id}",$qty);
     }
 
     //cancelar venta/limpiar
@@ -79,6 +80,7 @@ class SaleCreate extends Component
 
         Cart::clear();
         $this->dispatch('msg', 'Venta Cancelada');
+        $this->dispatch('refreshProducts');
     }
 
     #variable computada
@@ -91,7 +93,6 @@ class SaleCreate extends Component
         ->paginate($this->cant);
 
     }
-
 
 
 }

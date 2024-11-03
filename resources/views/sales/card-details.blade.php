@@ -42,16 +42,23 @@
                           <td>{!!$product->price!!}</td>  
                         <td>
                             <!-- Botones para aumentar o disminuir la cantidad del producto en el carrito -->
-                            <button wire:click='decrement({{$product->id}})' class="btn btn-primary btn-xs" >
+                            <button wire:click='decrement({{$product->id}})' class="btn btn-primary btn-xs"
+                                    wire:loading.attr='disable'
+                                    wire:target='decrement'
+                                >
                                 - 
                             </button>
 
                             <span class="mx-1">{{$product->quantity}}</span>
 
-                            <button  wire:click='increment({{$product->id}})' class="btn btn-primary btn-xs" >
-                                +
-                            </button>
-                            
+                            <button wire:click="increment({{ $product->id }})" 
+                                class="btn btn-primary btn-xs" 
+                                 wire:loading.attr='disable'  {{--se deshabilita cuando el stock queda en 0--}}
+                                {{$product->quantity >= $product->associatedModel->stock ? 'disabled' : '' }}>
+                            +
+                        </button>
+
+                                                
                         </td>
                         <td>{{money($product->quantity*$product->price)}}</td>
                         <td>
@@ -59,7 +66,7 @@
                             <button 
                                 class="btn btn-danger btn-xs" 
                                 title="Eliminar"
-                                wire:click="removeItem({{ $product->id }})" >
+                                wire:click="removeItem({{ $product->id}},{{$product->quantity}})" >
                                 <i class="fas fa-trash-alt"></i>
                             </button>
                         </td>
