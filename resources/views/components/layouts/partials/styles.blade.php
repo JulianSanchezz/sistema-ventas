@@ -13,3 +13,8 @@
     <link rel="stylesheet" href="{{asset('plugins/icheck-boostrap/icheck-boostrap.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+
+
+
+    {{-- incoporar css --}}
+    @yield('styles') 

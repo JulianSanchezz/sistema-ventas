@@ -1,8 +1,8 @@
 <div>
     <x-card cardTitle="">
        <x-slot:cardTools>
-          <a href="#" class="btn btn-primary btn-sm mr-2">
-            <i class="fas fa-plus-circle"></i> Ir a Ventas 
+          <a href="{{route('sales.list')}}" class="btn btn-primary btn-sm mr-2">
+            <i class="fas fa-shopping-cart"></i> Ir a Ventas 
           </a>
 
           <a href="#" class="btn-sm btn btn-danger" wire:click='clear'>
@@ -15,6 +15,11 @@
             <div class="col-md-6"> 
                 {{-- card datails : --}}
                 @include('sales.card-details')
+                {{-- card pago : --}}
+                @include('sales.card-pago')
+                {{-- card cliente --}}
+                @livewire('sale.client')
+
             </div>
             {{-- columna productos --}}
             <div class="col-md-6"> 

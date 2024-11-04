@@ -70,4 +70,9 @@ class User extends Authenticatable
 
     }
 
+    //relaciones user y ventas
+    public function sales () {
+        return $this->hasMany(sale::class);
+    }
+
 }

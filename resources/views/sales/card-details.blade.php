@@ -1,6 +1,6 @@
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta </h3>
+        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta {{$client}} </h3>
         <div class="card-tools">
             <!-- Conteo de productos -->
             <i class="fas fa-tshirt" title="Numero productos"></i>
@@ -8,6 +8,15 @@
             <!-- Conteo de articulos -->
             <i class="fas fa-shopping-basket ml-2" title="Numero items"></i>
             <span class="badge badge-pill bg-purple">{{$totalArticulos}}</span>
+
+            {{-- boton crear venta --}}
+            <button wire:click="createSale" class="btn bg-purple ml-2">
+                <i class="fas fa-shopping-cart"></i>
+
+
+                Crear Venta
+            </button>
+
         </div>
     </div>
 <!-- card-body -->

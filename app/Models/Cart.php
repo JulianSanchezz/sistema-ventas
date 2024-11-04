@@ -26,14 +26,17 @@ class Cart
 
 
     // Método para obtener el contenido del carrito de compras
-     public static function getCart()
-     {
-         $userId = auth()->id(); // Obtener el ID del usuario autenticado
+    //  public static function getCart()
+    //  {
+    //      $userId = auth()->id(); // Obtener el ID del usuario autenticado
+    //      $cart = \Cart::session($userId)->getContent();  //Obtener el contenido del carrito de la sesión del usuario y ordenarlo
+    //      return $cart->sort();
+    //  }
 
-    // Obtener el contenido del carrito de la sesión del usuario y ordenarlo
-         $cart = \Cart::session($userId)->getContent();
-         return $cart->sort();
-     }
+    public static function getCart(){
+        $cart = \Cart::session(userID())->getContent();
+        return $cart->sort();
+    }
 
      public static function getTotal(){
         return \Cart::session(userID())->getTotal();

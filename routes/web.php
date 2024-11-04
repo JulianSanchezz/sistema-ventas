@@ -12,6 +12,8 @@ use App\Livewire\User\UserShow;
 use App\Livewire\Client\ClientComponent;
 use App\Livewire\Client\ClientShow;
 use App\Livewire\Sale\SaleCreate;
+use App\Livewire\Sale\SaleList;
+use App\Livewire\Sale\SaleShow;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +48,9 @@ Route::get('/clientes',ClientComponent::class)->name('clients');
 Route::get('/clientes/{client}',ClientShow::class)->name('clients.show');
 
 Route::get('/ventas/crear',SaleCreate::class)->name('sales.create');
+
+Route::get('/sales', SaleList::class)->name('sales.list');
+
+Route::get('/sales/{sale}',SaleShow::class)->name('sales.show');
+
+
