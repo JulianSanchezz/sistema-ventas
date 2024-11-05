@@ -90,11 +90,21 @@
 
       <li class="nav-item">
         <a href="{{route('users')}}" class="nav-link">
-          <i class="mav-icon fas fa-users"></i>
+          <i class="nav-icon fas fa-users"></i>
           <p>
             Usuarios
           </p>
         </a>
+    </li>
+
+
+    <li class="nav-item">
+      <a href="{{route('tienda')}}" class="nav-link">
+        <i class="nav-icon fas fa-store-alt"></i>
+        <p>
+          Tienda
+        </p>
+      </a>
     </li>
 
         </ul>

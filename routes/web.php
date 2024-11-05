@@ -14,6 +14,7 @@ use App\Livewire\Client\ClientShow;
 use App\Livewire\Sale\SaleCreate;
 use App\Livewire\Sale\SaleList;
 use App\Livewire\Sale\SaleShow;
+use App\Livewire\Shop\ShopComponent;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +54,5 @@ Route::get('/sales', SaleList::class)->name('sales.list');
 
 Route::get('/sales/{sale}',SaleShow::class)->name('sales.show');
 
+Route::get('/tienda',ShopComponent::class)->name('tienda');
 
