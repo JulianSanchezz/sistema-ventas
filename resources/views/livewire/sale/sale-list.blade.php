@@ -26,7 +26,7 @@
        <x-table>
           <x-slot:thead>
              <th>ID</th>
-             <th>Cliente</th>
+             <th>ClienteS</th>
              <th>Total</th>
              <th>Productos</th>
              <th>Articulos</th>
@@ -71,7 +71,7 @@
 
                 <td>{{$sale->fecha}}</td>
                 <td>
-                    <a href="#" class="btn bg-navy btn-sm" title="Generar PDF">
+                    <a href="{{route('sales.invoice',$sale)}}" class="btn bg-navy btn-sm" title="Generar PDF" target="_blank">
                         <i class="far fa-file-pdf"></i>
                     </a>
                 </td>

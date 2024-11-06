@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Category\CategoryComponent;
 use App\Livewire\Product\ProductComponent;
@@ -55,4 +56,7 @@ Route::get('/sales', SaleList::class)->name('sales.list');
 Route::get('/sales/{sale}',SaleShow::class)->name('sales.show');
 
 Route::get('/tienda',ShopComponent::class)->name('tienda');
+
+Route::get('/sales/invoice/{sale}', [PdfController::class, 'invoice'])->name('sales.invoice');
+
 

@@ -20,7 +20,7 @@ class Sale extends Model
     }
 
     public function client(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function items(){

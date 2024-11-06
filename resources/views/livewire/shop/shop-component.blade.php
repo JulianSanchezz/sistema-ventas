@@ -7,61 +7,45 @@
        </x-slot>
        <div class="table-responsive">
        <table class="table table-hover table-striped text-center">
-            <thead>
-                <th>ID</th>
-                <th>
-                    <i class="fas fa-image"></i>
-                </th>
-                <th>Nombre</th>
-                <th>Slogan</th>
-                <th>Telefono</th>
-                <th>Email</th>
-                <th>Direccion</th>
-                <th>Ciudad</th>
+        <thead>
+             <th>ID</th>
+             <th>
+                <i class="fas fa-image"></i>
+            </th>
+             <th>Nombre</th>
+             <th>Slogan</th>
+             <th>Telefono</th>
+             <th>Email</th>
+             <th>Direccion</th>
+             <th>Ciudad</th>
  
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
 
-          {{-- @forelse ($shops as $shop) --}}
-              
-          @if($shop)
-          <tr>
-            <td>{{ $shop->id }}</td> 
-            <td>
-                    <x-image :item="$shop" /> 
-            </td>
-            <td>{{$shop->name}}</td>
-            <td>{{$shop->slogan}}</td>
-            <td>{{$shop->telefono}}</td>
-            <td>{{$shop->email}}</td>
-            <td>{{$shop->direccion}}</td>
-            <td>{{$shop->ciudad}}</td>
-            </tr>
-            @else
-            <tr>
-                    <td colspan="8">No hay datos disponibles.</td>
-            </tr>
-            @endif
+             <tr>
+                <td>{{$shop->id}}</td>
+                <td>
+                    <x-image :item="$shop" />
+                    
+                </td>
+                <td>{{$shop->name}}</td>
+                <td>{{$shop->slogan}}</td>
+                <td>{{$shop->telefono}}</td>
+                <td>{{$shop->email}}</td>
+                <td>{{$shop->direccion}}</td>
+                <td>{{$shop->ciudad}}</td>
 
-             {{-- @empty
+             </tr>
 
-             <tr class="text-center">
-                <td colspan="10">Sin registros</td>
-             </tr> --}}
-              
-             {{-- @endforelse --}}
             </tbody>
         </table>
     </div>
- 
-       <x-slot:cardFooter>   
-       </x-slot>
     </x-card>
 
 
 {{-- MODAL EDITAR --}}
 <x-modal modalId="modalShop" modalTitle="Datos tienda" modalSize="modal-lg">
-    <form wire:submit="edit">
+    <form wire:submit="update">
 
         <div class="form-row">
 
@@ -136,12 +120,12 @@
             <div class="form-group col-md-6">
 
             
-                <x-image :item="$shop" size="200" float="float-right" /> 
+                <x-image :item="$shop" size="200" float="float-right" />
     
 
-                 @if ($this->image)
+                @if ($this->image)
                 <img src="{{$image->temporaryUrl()}}" class="rounded float-right" width="200">
-                @endif 
+                @endif
 
             </div>
 

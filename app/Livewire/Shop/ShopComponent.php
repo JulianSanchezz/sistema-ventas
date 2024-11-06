@@ -76,7 +76,7 @@ class ShopComponent extends Component
         $this->shop->update();
 
         if($this->image){
-
+            
             
             if($this->shop->image!=null){
                 Storage::delete('public/'.$this->shop->image->url);
