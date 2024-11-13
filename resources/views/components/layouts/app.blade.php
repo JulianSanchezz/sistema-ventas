@@ -7,6 +7,7 @@
     <title>ventas</title>
 
     @include('components.layouts.partials.styles')
+
 </head>
 
 <body class="hold-transition sidebar-collapse dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">

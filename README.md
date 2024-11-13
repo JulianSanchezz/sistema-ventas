@@ -7,7 +7,7 @@
 - Input para realizar búsquedas de categorías.
 - Mostrar la cantidad de categorías.
 - *Tiempo estimado:* 3 días.
-- *Tiempo real:* 12hs.
+- *Tiempo real:* 3hs.
 
 ### Productos:
 - Mostrar una tabla con las imágenes, nombre, precio de venta, stock, categoría relacionada, y estado de los productos.
@@ -16,6 +16,7 @@
 - Botón para crear un nuevo producto.
 - Mostrar la cantidad de productos.
 - *Tiempo estimado:* 5 días.
+- *Tiempo real:* 8hs.
 
 ### Inicio:
 - Mostrar la cantidad de productos/artículos vendidos y las ventas realizadas en el día.
@@ -26,9 +27,11 @@
 - Mostrar el nombre, CUIT/CUIL de la empresa, eslogan de la empresa o negocio, mail, celular y dirección.
 - *Tiempo estimado:* 2 días.
 
+
 ### Módulo Crear Clientes:
 - Registrar los datos del cliente para adjuntar a la venta.
 - *Tiempo estimado:* 2 días.
+- *Tiempo real:* 8hs.
 
 ### Módulo Ventas:
 - Crear una venta.
@@ -37,11 +40,14 @@
 - Facturación con AFIP.
 - Funciones para ver la venta, editarla o eliminarla.
 - *Tiempo estimado:* 4 días.
+- *Tiempo real:* 2 días.
+
 
 ### Módulo Usuario:
 - Crear usuarios.
 - Restringir el acceso al sistema según el rol del usuario.
 - *Tiempo estimado:* 3 días.
+
 
 ## Tareas realizadas por Nazarena Alvarez
 
@@ -49,11 +55,15 @@
 - Restringir el acceso a usuarios vendedores.
 - Dar acceso a todos los módulos a usuarios administradores.
 - *Tiempo estimado:* 2 días.
+- *Tiempo real:* 6hs.
+
 
 ### Módulo NavBar:
 - Mostrar el nombre del usuario logueado.
 - Botón/icono que direccione al inicio si se está en otro módulo.
 - *Tiempo estimado:* 1 día.
+- *Tiempo real:* 6hs.
+
 
 ### Otros Módulos:
 - Módulo Usuario.
@@ -69,7 +79,7 @@
 - **Error encontrado:** Problema con la compatibilidad entre las clases de Bootstrap 5.2 y Bootstrap 4.6, que es la versión utilizada por AdminLTE.
 
 ### Pruebas Unitarias:
-- **Error encontrado:** Al realizar pruebas unitarias con el componente de Livewire para las categorías, se presentó el error `A facade root has not been set.` Este error ocurrió porque la referencia a `PHPUnit\Framework\TestCase` no estaba correctamente configurada para el contexto de pruebas unitarias. Cambié la referencia a `Tests\TestCase`, lo que permitió que las pruebas unitarias se ejecutaran correctamente sin la necesidad de depender de un entorno de prueba de características.
+- **Error encontrado:** Al realizar pruebas unitarias con el componente de Livewire para las categorías, se presentó el error `A facade root has not been set.` Este error ocurrió porque la referencia a `PHPUnit\Framework\TestCase` no estaba correctamente configurada para el contexto de pruebas unitarias. 
 
 Información pendiente de agregar
 

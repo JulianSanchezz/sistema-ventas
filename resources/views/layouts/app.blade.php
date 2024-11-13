@@ -67,7 +67,7 @@
             </div>
         </nav>
 
-        <main class="py-5" style="min-height: 100vh; background-color: #6c757d">
+        <main class="py-5" style="min-height: 100vh; background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/Imagen de WhatsApp 2024-11-12 a las 16.07.41_d6f9ff95.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
             @yield('content')
         </main>
     </div>
