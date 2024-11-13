@@ -1,21 +1,30 @@
 <div>
-   <H1>SOY EL INICIO</H1>
 
-   <x-card cardTitle='Card Title' cardFooter='card footer'> {{-- pasamos los nombres a las variables de lo que deseamos en el titulo del componente--}}
+   <x-card cardTitle='Bienvenidos' cardFooter='card footer'> {{-- pasamos los nombres a las variables de lo que deseamos en el titulo del componente--}}
 
             <x-slot:cardTools>
-                  <a href="#" class="btn btn-primary">crear</a>
+                  <a href="{{route('sales.list')}}" class="btn btn-primary">
+                     <i class="fas fa-shopping-cart"></i>Ir a Ventas
+                  </a>
+
+                  <a href="{{route('sales.create')}}" class="btn bg-purple"> <i class="fas fa-cart-plus"></i>Crear Ventas
+                  </a>
             </x-slot:cardTools>
-            <x-table>
-               <x-slot:thead>
-                  <th>thead</th>
-                  <th>thead</th>
-               </x-slot:thead>
+
+            {{-- filas de cards ventas hoy --}}
+            @include('home.row-cards-sales')
+
+
+            {{-- card grafica --}}
+            @include('home.card-graph')
+
+            {{-- cajas de reportes --}}
+            @include('home.boxes-reports')
+
+            {{-- filas de cards mejores vendedores y compradores --}}
+            @include('home.best-sellers-buyers')
+
             
-                     <tr>
-                        <td>...</td>
-                        <td>...</td>
-                     </tr>            
-            </x-table>
+            
    </x-card>
 </div>

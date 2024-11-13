@@ -13,6 +13,7 @@ use App\Livewire\User\UserShow;
 use App\Livewire\Client\ClientComponent;
 use App\Livewire\Client\ClientShow;
 use App\Livewire\Sale\SaleCreate;
+use App\Livewire\Sale\SaleEdit;
 use App\Livewire\Sale\SaleList;
 use App\Livewire\Sale\SaleShow;
 use App\Livewire\Shop\ShopComponent;
@@ -32,31 +33,40 @@ use App\Livewire\Shop\ShopComponent;
 //     return view('welcome');
 // });
 
-Auth::routes(['register'=>true]);
+Auth::routes(['register'=>false]);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/home',Inicio::class)->name('home');
-Route::get('/categorias',CategoryComponent::class)->name('categories');
-Route::get('/categorias/{category}',CategoryShow::class)->name('categories.show');
+Route::get('/',Inicio::class)->name('home')->middleware(['auth']);
 
-Route::get('/productos',ProductComponent::class)->name('products');
-Route::get('/productos/{product}',ProductShow::class)->name('products.show');
 
-Route::get('/usuarios',UserComponent::class)->name('users');
-Route::get('/usuarios/{user}',UserShow::class)->name('users.show');
+Route::get('/categorias',CategoryComponent::class)->name('categories')->middleware(['auth','admin']);
 
-Route::get('/clientes',ClientComponent::class)->name('clients');
-Route::get('/clientes/{client}',ClientShow::class)->name('clients.show');
+Route::get('/categorias/{category}',CategoryShow::class)->name('categories.show')->middleware(['auth','admin']);
 
-Route::get('/ventas/crear',SaleCreate::class)->name('sales.create');
+Route::get('/productos',ProductComponent::class)->name('products')->middleware(['auth','admin']);
 
-Route::get('/sales', SaleList::class)->name('sales.list');
+Route::get('/productos/{product}',ProductShow::class)->name('products.show')->middleware(['auth','admin']);
 
-Route::get('/sales/{sale}',SaleShow::class)->name('sales.show');
+Route::get('/usuarios',UserComponent::class)->name('users')->middleware(['auth','admin']);
 
-Route::get('/tienda',ShopComponent::class)->name('tienda');
+Route::get('/usuarios/{user}',UserShow::class)->name('users.show')->middleware(['auth','admin']);
 
-Route::get('/sales/invoice/{sale}', [PdfController::class, 'invoice'])->name('sales.invoice');
+
+Route::get('/clientes',ClientComponent::class)->name('clients')->middleware(['auth','admin']);
+
+Route::get('/clientes/{client}',ClientShow::class)->name('clients.show')->middleware(['auth','admin']);
+
+Route::get('/ventas/crear',SaleCreate::class)->name('sales.create')->middleware(['auth']);
+
+Route::get('/sales',SaleList::class)->name('sales.list')->middleware(['auth','admin']);
+
+Route::get('/sales/{sale}',SaleShow::class)->name('sales.show')->middleware(['auth']);
+
+Route::get('/tienda',ShopComponent::class)->name('tienda')->middleware(['auth','admin', 'admin']);
+
+Route::get('/sales/invoice/{sale}',[PdfController::class,'invoice'])->name('sales.invoice')->middleware(['auth']);
+
+Route::get('/sales/{sale}/edit',SaleEdit::class)->name('sales.edit');
 
 
