@@ -1,6 +1,6 @@
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta {{$client}} </h3>
+        <h3 class="card-title"><i class="fas fa-cart-plus"></i> Detalles venta </h3>
         <div class="card-tools">
             <!-- Conteo de productos -->
             <i class="fas fa-tshirt" title="Numero productos"></i>

@@ -83,9 +83,9 @@
                 </td>
                 <td>
                    {{-- boton editar --}}
-                    {{-- <a href="{{route('sales.edit',$sale)}}" class="btn btn-primary btn-sm" title="Editar">
-                        <i class="far fa-edit"></i>
-                    </a> --}}
+                   <a href="{{route('sales.edit',$sale)}}" class="btn btn-primary btn-sm" title="Editar">
+                    <i class="far fa-edit"></i>
+                    </a>
                 </td>
                 <td>
                     {{-- emitimos un evento y pasamos el id --}}

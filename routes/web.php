@@ -13,6 +13,7 @@ use App\Livewire\User\UserShow;
 use App\Livewire\Client\ClientComponent;
 use App\Livewire\Client\ClientShow;
 use App\Livewire\Sale\SaleCreate;
+use App\Livewire\Sale\SaleEdit;
 use App\Livewire\Sale\SaleList;
 use App\Livewire\Sale\SaleShow;
 use App\Livewire\Shop\ShopComponent;
@@ -65,5 +66,7 @@ Route::get('/sales/{sale}',SaleShow::class)->name('sales.show')->middleware(['au
 Route::get('/tienda',ShopComponent::class)->name('tienda')->middleware(['auth','admin', 'admin']);
 
 Route::get('/sales/invoice/{sale}',[PdfController::class,'invoice'])->name('sales.invoice')->middleware(['auth']);
+
+Route::get('/sales/{sale}/edit',SaleEdit::class)->name('sales.edit')->middleware(['auth']);
 
 
