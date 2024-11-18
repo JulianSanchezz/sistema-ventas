@@ -10,7 +10,7 @@ class Category extends Model
     use HasFactory;
     //establecemos la relacion entre productos y categorias
     public function products(){
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'category_id');
     }
 
 }

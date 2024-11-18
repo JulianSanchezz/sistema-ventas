@@ -19,7 +19,7 @@
       <div class="small-box bg-purple">
         <div class="inner">
           <h3>{{money($totalventasHoy)}}</h3>
-
+          
           <p>Total ventas hoy</p>
         </div>
         <div class="icon">

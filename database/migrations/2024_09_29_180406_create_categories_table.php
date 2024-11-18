@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('categoriaEstado')->default(true); // Nueva columna para la baja lógica
             $table->timestamps();
         });
     }
@@ -23,6 +24,12 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Eliminar la columna 'categoriaEstado' antes de eliminar la tabla
+        Schema::table('categories', function (Blueprint $table) {
+            $table->dropColumn('categoriaEstado');
+        });
+
         Schema::dropIfExists('categories');
+        
     }
 };

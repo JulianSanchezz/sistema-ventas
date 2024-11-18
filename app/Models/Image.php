@@ -14,7 +14,7 @@ class Image extends Model
 
     public function imageable(){
 
-        return $this->morphTo(); //establecemos que el modelo image va trabajar con relaciones poliformicas segun laravel doc
+        return $this->morphTo(); //establecemos que el modelo image va trabajar con relaciones poliformicas segun laravel documentacion
     }
 
 }

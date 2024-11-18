@@ -18,6 +18,7 @@
                    <th width="3%">...</th>
                    <th width="3%">...</th>
                    <th width="3%">...</th>
+                   <th width="3%">...</th>
                   
                 </x-slot:thead>
              
@@ -52,6 +53,17 @@
                                 <i class="far fa-trash-alt"></i>
                             </a>                            
                          </td>
+
+                         <td>
+                           @if (!$product->active)
+                               <a href="#" wire:click="activate({{ $product->id }})" title="Restaurar" class="btn btn-success btn-xs">
+                                   <i class="fas fa-redo"></i> Restaurar
+                               </a>
+                           @endif
+                       </td>
+                       
+
+                         
                       </tr>
                       @empty
                           <tr class="text-center">

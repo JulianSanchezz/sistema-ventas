@@ -93,7 +93,6 @@ class Inicio extends Component
                                             ->orderBy('id','desc')
                                             ->get();
 
-
     }
     // Consulta productos mas vendidos
     public function products_reports($filtraDia=0,$filtrarMes=0){

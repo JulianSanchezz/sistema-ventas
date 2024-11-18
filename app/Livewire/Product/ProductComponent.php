@@ -15,7 +15,6 @@ use Livewire\Attributes\On;
 #[Title('Productos')]
 class ProductComponent extends Component
 {
-
     use WithFileUploads;
     use WithPagination;
 
@@ -44,16 +43,15 @@ class ProductComponent extends Component
         $this->totalRegistros = Product::count();
 
         $products = Product::where('name', 'like', '%'. $this->search .'%')
-        ->orderBy('id','desc')
-        ->paginate($this->cant);
+            ->orderBy('id','desc')
+            ->paginate($this->cant);
 
-        
         return view('livewire.product.product-component', ['products' => $products]);
     }
 
     #[Computed()] //propiedad computada
     public function categories(){
-        return Category::all();
+        return Category::where('categoriaEstado', true)->get();
     }
 
     public function create(){
@@ -78,12 +76,6 @@ class ProductComponent extends Component
              'image' => 'image|max:1024|nullable',
              'category_id' => 'required|numeric',
          ];
-        //  $message = [
-        //      'name.required' => 'El nombre es requerido',
-        //      'name.min' => 'Debe tener minimo 5 caracteres',
-        //      'name.max' => 'No debe superar los 255 caracteres',
-        //      'name.unique' => 'El nombre de la categoria ya esta en uso'
-        //  ];
 
          $this->validate($rules);
 
@@ -115,21 +107,45 @@ class ProductComponent extends Component
     }
 
 
-    #[On('destroyProduct')]
-    public function destroy($id){
-        // dump($id);
-        $product = Product::findOrfail($id);
+    // #[On('destroyProduct')]
+    // public function destroy($id){
+    //     // dump($id);
+    //     $product = Product::findOrfail($id);
 
-        //si tiene una imagen definida entonces eliminamos la img del servidor, luego el registro en la bd, luego se emite evento
-        if($product->image!=null){
-            Storage::delete('public/'.$product->image->url);
-            $product->image()->delete();
+    //     //si tiene una imagen definida entonces eliminamos la img del servidor, luego el registro en la bd, luego se emite evento
+    //     if($product->image!=null){
+    //         Storage::delete('public/'.$product->image->url);
+    //         $product->image()->delete();
+    //     }
+
+    //     $product->delete();
+
+    //     $this->dispatch('msg','Producto eliminado correctamente.');
+    // }
+
+
+    #[On('destroyProduct')]
+        public function destroy($id)
+        {
+            // Buscar el producto por ID
+            $product = Product::findOrFail($id);
+
+            // Si tiene una imagen, puedes decidir si eliminar la imagen del servidor o conservarla
+            // if ($product->image != null) {
+            //     // Si decides conservar la imagen, omite estas líneas
+            //     Storage::delete('public/' . $product->image->url);
+            //     $product->image()->delete();
+            // }
+
+            // Dar de baja el producto actualizando el campo 'active'
+            $product->active = false;
+            $product->save();
+
+            // Emitir un mensaje de éxito
+            $this->dispatch('msg', 'Producto dado de baja correctamente.');
         }
 
-        $product->delete();
 
-        $this->dispatch('msg','Producto eliminado correctamente.');
-    }
 
     public function edit(Product $product){
       
@@ -206,5 +222,17 @@ class ProductComponent extends Component
         $this->reset(['Id','name','image','descripcion','precio_compra','precio_venta','stock','stock_minimo','codigo_barras','fecha_vencimiento','active','category_id']);
         $this->resetErrorBag();
     }
+
+    public function activate($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->active = true;
+        $product->save();
+
+        $this->dispatch('msg', 'Producto restaurado correctamente.');
+    }
+
+
+
 
 }

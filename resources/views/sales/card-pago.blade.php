@@ -14,7 +14,7 @@
     <div class="card-body">
         <div class="row">
             <div class="col-6">
-                <label for="pago">Pago:</label>
+                <label for="pago">Cobro:</label>
                 <div class="input-group ">
 
                     <div class="input-group-prepend">

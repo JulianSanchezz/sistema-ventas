@@ -67,8 +67,9 @@
     <table class="b" width="100%">
         <tr>
             <td width="25%">
-                <img src="{{public_path().'/'.'storage/'.$shop->image->url}}" width="150">
+                <img src="{{ asset('storage/' . $shop->image->url) }}" width="150px">
             </td>
+            
 
             <td  width="50%"style="text align: center">
                 <h1>{{$shop->slogan}}</h1>
