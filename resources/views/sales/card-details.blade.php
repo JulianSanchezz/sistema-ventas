@@ -10,11 +10,10 @@
             <span class="badge badge-pill bg-purple">{{$totalArticulos}}</span>
 
             {{-- boton crear venta --}}
-            <button wire:click="createSale" class="btn bg-purple ml-2">
-                <i class="fas fa-shopping-cart"></i>
-
-
-                Crear Venta
+            <button wire:click="{{isset($sale) ? 'editSale' : 'createSale'}}
+            " class="btn bg-purple ml-2">
+                <i class="fas fa-cart-plus"></i>
+                {{isset($sale) ? 'Editar venta' : 'Generar venta'}}
             </button>
 
         </div>

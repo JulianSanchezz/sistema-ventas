@@ -26,7 +26,7 @@ class SaleEdit extends Component
 
     public $cart;
 
-    public $loadCart = false;
+    public $loadCart = false; //cargamos el carrito dspuesde eso nos permite obtener detalles del carro
     
     public function render()
     {
