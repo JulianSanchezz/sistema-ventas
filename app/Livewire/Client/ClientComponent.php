@@ -43,7 +43,7 @@ class ClientComponent extends Component
             ->paginate($this->cant);
        
         return view('livewire.client.client-component',[
-            'clientes' => $clientes
+            'clientes' => $clientes,
         ]);
     }
 

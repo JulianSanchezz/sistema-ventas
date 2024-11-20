@@ -36,12 +36,13 @@ class SaleEdit extends Component
             $this->cart = Cart::getCart();
         }
         
+        $activeProducts = Product::where('active', 1)->paginate(10);
 
         return view('livewire.sale.sale-edit',[
             
             'totalArticulos' => Cart::totalArticulos(),
             'total' => Cart::getTotal(),
-            'products' => $this->products,
+            'products' => $activeProducts,
         ]);
     }
 

@@ -159,7 +159,7 @@ class CategoryComponent extends Component
         $activeProducts = $category->products()->where('active', true)->count();
 
         if ($activeProducts > 0) {
-            $this->dispatch('msg', "No puedes desactivar esta categoría porque tiene $activeProducts productos activos.", 'error');
+            $this->dispatch('msg', "No puedes desactivar esta categoría porque tiene $activeProducts productos activos.", 'warning');
             return;
         }
 
