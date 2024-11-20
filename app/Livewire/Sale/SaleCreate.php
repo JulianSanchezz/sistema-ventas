@@ -13,6 +13,7 @@ use App\Models\Cart;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\DB;
 
+
 #[Title('Ventas')]
 class SaleCreate extends Component
 {
@@ -65,7 +66,7 @@ class SaleCreate extends Component
             return;
         }
     
-        // Validar el monto ingresado en "pago"
+        if ($this->pago === null || $this->pago <= 0 || $this->pago < Cart::getTotal()) {
         if ($this->pago === null || $this->pago <= 0) {
             $this->dispatch('msg', 'Por favor, ingrese un monto válido para el cobro.', 'danger');
             return;
@@ -110,6 +111,8 @@ class SaleCreate extends Component
             $this->dispatch('msg', 'Venta creada correctamente.', 'success');
         });
     }
+
+}
     
 
 
