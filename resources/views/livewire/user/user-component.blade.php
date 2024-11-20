@@ -14,7 +14,7 @@
              <th width="3%">...</th>
              <th width="3%">...</th>
  
-          </x-slot>
+          </x-slot:thead>
 
           @forelse ($users as $user)        
              <tr>
@@ -60,7 +60,7 @@
             {{-- input name --}}
             <div class="form-group col-12 col-md-6">
                 <label for="name">Nombre:</label>
-                <input wire:model='name' type="text" class="form-control" placeholder="Nombre" id="name">
+                <input wire:model='name' type="text" class="form-control" placeholder="Nombre" id="name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)">
                 @error('name')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror

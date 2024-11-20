@@ -84,7 +84,7 @@
             {{-- input stock minimo --}}
             <div class="form-group col-md-4">
                 <label for="stock_minimo">Stock Minimo:</label>
-                <input wire:model='stock' min="0" type="number" class="form-control" placeholder="Stock minimo" id="stock_minimo">
+                <input wire:model='stock_minimo' min="0" type="number" class="form-control" placeholder="Stock minimo" id="stock_minimo">
                 @error('stock_minimo')
                     <div class="alert alert-danger w-100 mt-3">{{ $message }}</div>
                 @enderror

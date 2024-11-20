@@ -13,6 +13,8 @@
              <th>Identificacion</th>
              <th>Email</th>
              <th>Telefono</th>
+             <th>Estado</th>
+             <th width="3%">...</th>
              <th width="3%">...</th>
              <th width="3%">...</th>
              <th width="3%">...</th>
@@ -28,6 +30,13 @@
                 <td>{{$cliente->email}}</td>
                 <td>{{$cliente->telefono}}</td>
                 <td>
+                    @if($cliente->clientActive)
+                        <span class="badge badge-success">Activo</span>
+                    @else
+                        <span class="badge badge-warning">Desactivado</span>
+                    @endif
+                </td>
+                <td>
                     <a href="{{route('clients.show',$cliente)}}" class="btn btn-success btn-sm" title="Ver">
                         <i class="far fa-eye"></i>
                     </a>
@@ -42,8 +51,20 @@
                         <i class="far fa-trash-alt"></i>
                     </a>
                 </td>
+
+                {{-- restaurar cliente --}}
+             <td>
+                @if (!$cliente->clientActive)  <!-- Si el cliente está inactivo -->
+                    <a href="#" wire:click="activarCliente({{ $cliente->id }})" title="Restaurar" class="btn btn-success btn-xs">
+                        <i class="fas fa-redo"></i> Restaurar
+                    </a>
+                @endif
+            </td>
+
              </tr>
 
+             
+            
              @empty
 
              <tr class="text-center">

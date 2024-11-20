@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('fecha');
             $table->foreignId('user_id')->constrained();
             $table->foreignId('client_id')->constrained();
+            $table->boolean('estadoVenta')->default(true)->after('client_id');
             $table->timestamps();
         });
     }
@@ -28,6 +29,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        // Schema::dropIfExists('sales');
+        Schema::table('sales', function (Blueprint $table) {
+            $table->dropColumn('estadoVenta'); // Elimina la columna si se revierte la migración
+        });
     }
 };

@@ -26,52 +26,64 @@ class SaleList extends Component
 
 
     public function render()
-    {
-        
-        if($this->search!=''){
-            $this->resetPage(); //resetamos la pagina si es diferente de vacio
+        {
+            if ($this->search != '') {
+                $this->resetPage(); // Resetear la página si el campo de búsqueda no está vacío
+            }
+
+            // Total de registros activos
+            $this->totalRegistros = Sale::where('estadoVenta', true)->count();
+
+            // Consulta base: Solo ventas activas
+            $salesQuery = Sale::where('estadoVenta', true)
+                ->where('id', 'like', '%' . $this->search . '%');
+
+            if ($this->dateInicio && $this->dateFin) {
+                // Filtrar por rango de fechas
+                $salesQuery = $salesQuery->whereBetween('fecha', [$this->dateInicio, $this->dateFin]);
+
+                // Total de ventas activas dentro del rango
+                $this->totalVentas = $salesQuery->sum('total');
+            } else {
+                // Total de ventas activas sin filtro de fechas
+                $this->totalVentas = Sale::where('estadoVenta', true)->sum('total');
+            }
+
+            // Paginación y ordenamiento
+            $sales = $salesQuery
+                ->orderBy('id', 'desc')
+                ->paginate($this->cant);
+
+            // Retornamos la vista con las ventas activas
+            return view('livewire.sale.sale-list', [
+                "sales" => $sales
+            ]);
         }
 
-        $this->totalRegistros = Sale::count();
-         $salesQuery = Sale::where('id', 'like', '%'. $this->search .'%');
-
-
-        if($this->dateInicio && $this->dateFin){
-            $salesQuery = $salesQuery->whereBetween('fecha',[$this->dateInicio,$this->dateFin]);
-
-            $this->totalVentas = $salesQuery->sum('total');
-        }else{
-
-            $this->totalVentas = Sale::sum('total');
-        }
-         
-        $sales= $salesQuery 
-        ->orderBy('id','desc')
-        ->paginate($this->cant);
-
-        return view('livewire.sale.sale-list',[
-            "sales" => $sales
-        ]);
-
-    }
 
     // escuchamos el evento con el nombre destroySale
-    #[On('destroySale')]
-    public function destroy($id)
-    {
-        $sale = Sale::findOrFail($id);
+    // Escuchamos el evento con el nombre destroySale
+        #[On('destroySale')]
+        public function destroy($id)
+        {
+            $sale = Sale::findOrFail($id);
 
-        if ($sale->items) {
-            foreach ($sale->items as $item) {
-                Product::find($item->id)->increment('stock', $item->pivot->qty); // Usamos pivot para acceder a qty
-                $item->delete();
+            if ($sale->items) {
+                foreach ($sale->items as $item) {
+                    $product = Product::find($item->id);
+                    if ($product) {
+                        $product->increment('stock', $item->pivot->qty); // Incrementamos el stock
+                    }
+                }
             }
+
+            // Realizamos la baja lógica de la venta
+            $sale->update(['estadoVenta' => false]);
+
+            // Enviamos un mensaje de éxito
+            $this->dispatch('msg', 'Venta dada de baja de forma lógica.');
         }
 
-        $sale->delete();
-
-        $this->dispatch('msg', 'Venta Eliminada');
-    }
 
     #[On('setDates')]
     public function setDates($fechaInicio,$fechaFinal){

@@ -11,7 +11,7 @@ class Client extends Model
 
 
     protected $fillable= [
-        'name','identificacion','telefono','email','empresa','cuit'
+        'name','identificacion','telefono','email','empresa','cuit', 'clientActive'
     ];
 
     public function sales () {

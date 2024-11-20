@@ -67,14 +67,14 @@ class ProductComponent extends Component
     public function store(){
         //dump('crear producto');
          $rules = [
-             'name' => 'required|min:5|max:55|unique:products',
-             'descripcion' => 'max:255',
-             'precio_compra' => 'numeric|nullable',
-             'precio_venta' => 'required|numeric',
-             'stock' => 'required|numeric',
-             'stock_minimo' => 'numeric|nullable',
-             'image' => 'image|max:1024|nullable',
-             'category_id' => 'required|numeric',
+            'name' => 'required|min:5|max:55|unique:products',
+            'descripcion' => 'max:255',
+            'precio_compra' => 'numeric|nullable|not_in:0',
+            'precio_venta' => 'required|numeric|not_in:0',
+            'stock' => 'required|numeric',
+            'stock_minimo' => 'numeric|nullable',
+            'image' => 'image|max:1024|nullable',
+            'category_id' => 'required|numeric',
          ];
 
          $this->validate($rules);

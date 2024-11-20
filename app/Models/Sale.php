@@ -9,6 +9,21 @@ class Sale extends Model
 {
     use HasFactory;
 
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'total',       // Campo de la tabla
+        'pago',        // Campo de la tabla
+        'fecha',       // Campo de la tabla
+        'user_id',     // Relación con User
+        'client_id',   // Relación con Client
+        'estadoVenta', // Campo para baja lógica
+    ];
+
     //relacion poliformica
     public function image(){
         return $this->morphOne('App\Models\Image','imageable');

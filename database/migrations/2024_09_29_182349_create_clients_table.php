@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('empresa')->nullable();
             $table->string('cuit')->nullable();
+            $table->boolean('clientActive')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +31,7 @@ return new class extends Migration
     {
         Schema::table('clients', function (Blueprint $table) {
             $table->dropColumn('empresa');
+            $table->dropColumn('clientActive');
         });
     }
 };

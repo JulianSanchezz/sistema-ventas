@@ -67,7 +67,7 @@
     <table class="b" width="100%">
         <tr>
             <td width="25%">
-                <img src="{{ asset('storage/' . $shop->image->url) }}" width="150px">
+                <img src="{{ public_path() . '/' . 'storage/' . $shop->image->url }}" width="150px">
             </td>
             
 

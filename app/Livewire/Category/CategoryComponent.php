@@ -31,9 +31,9 @@ class CategoryComponent extends Component
         }
         $this->totalRegistros = Category::count();
 
-        // Modificamos para mostrar solo las categorías activas
+        // Modificamos para mostrar todas las categorías, pero las desactivadas al final
         $categories = Category::where('name', 'like', '%' . $this->search . '%')
-            ->where('categoriaEstado', true) // Solo categorías activas
+            ->orderBy('categoriaEstado', 'desc') // Las activas primero
             ->orderBy('id', 'desc')
             ->paginate($this->cant);
 
@@ -92,6 +92,12 @@ class CategoryComponent extends Component
             $this->dispatch('msg', 'Categoría reactivada correctamente');
             $this->reset(['name']);
             return; // Salir, ya que no necesitamos crear una nueva categoría
+        }
+
+        // Validar que el nombre no contenga números
+        if (preg_match('/\d/', $this->name)) {
+            $this->dispatch('msg', 'El nombre de la categoría no debe contener números', 'error');
+            return;
         }
 
         // Si no existe ni activa ni inactiva, creamos una nueva categoría
@@ -174,4 +180,16 @@ class CategoryComponent extends Component
         // Mostrar el modal para editar
         $this->dispatch('open-modal', 'modalCategory');
     }
+
+
+    public function activate($categoryId)
+    {
+        $category = Category::findOrFail($categoryId);
+        $category->categoriaEstado = true;
+        $category->save();
+
+        $this->dispatch('msg', 'Categoria restaurado correctamente.');
+    }
+
+
 }

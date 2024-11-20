@@ -13,6 +13,8 @@
                 <x-slot:thead>
                    <th>Id</th>
                    <th>Nombre</th>
+                   <th>Estado</th>
+                   <th width="3%">...</th>
                    <th width="3%">...</th>
                    <th width="3%">...</th>
                    <th width="3%">...</th>
@@ -25,6 +27,13 @@
                       <tr>
                          <td>{{$category->id}}</td>
                          <td>{{$category->name}}</td>
+                         <td>
+                             @if($category->categoriaEstado == 1)
+                                 <span class="badge badge-success">Activo</span>
+                             @else
+                                 <span class="badge badge-warning">Inactivo</span>
+                             @endif
+                         </td>
                          <td>
                             <a href="{{route('categories.show',$category)}}" title="Ver" class="btn btn-success btn-xs">
                                 <i class="far fa-eye"></i>
@@ -40,6 +49,15 @@
                                 <i class="far fa-trash-alt"></i>
                             </a>                            
                          </td>
+
+                         <td>
+                            @if (!$category->categoriaEstado)
+                                <a href="#" wire:click="activate({{ $category->id }})" title="Restaurar" class="btn btn-success btn-xs">
+                                    <i class="fas fa-redo"></i> Restaurar
+                                </a>
+                            @endif
+                        </td>
+
                       </tr>
                       @empty
                           <tr class="text-center">
@@ -62,7 +80,7 @@
                 <div class="form-row">
                     <div class="form-group col-12">
                         <label for="name">Nombre:</label>
-                        <input wire:model='name' type="text" class="form-control" placeholder="Nombre categoria" id="name">
+                        <input wire:model='name' type="text" class="form-control" placeholder="Nombre categoria" id="name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)">
                         @error('name')
                             <div class="alert alert-danger w-100 mt-3">{{$message}}</div>
                         @enderror

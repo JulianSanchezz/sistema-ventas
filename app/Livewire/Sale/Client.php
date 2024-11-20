@@ -46,7 +46,7 @@ class Client extends Component
     //por defecto pasamos el cliente generico
     public function nameClient($id = 1)
     {
-        $findClient = Cliente::find($id);
+        $findClient = Cliente::where('clienteActive', 1)->find($id);
 
         // Verifica si el cliente existe
         $this->nameClient = $findClient ? $findClient->name : 'Cliente no encontrado';

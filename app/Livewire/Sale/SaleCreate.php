@@ -181,11 +181,10 @@ class SaleCreate extends Component
     #obtenemos el listado de productos
     #[Computed()]
     public function products() {
-
-        return Product::where('name','like','%'.$this->search.'%')
-        ->orderBy('id','desc')
-        ->paginate($this->cant);
-
+        return Product::where('name', 'like', '%' . $this->search . '%')
+            ->where('active', true) // Filtra solo los productos activos
+            ->orderBy('id', 'desc')
+            ->paginate($this->cant);
     }
 
 

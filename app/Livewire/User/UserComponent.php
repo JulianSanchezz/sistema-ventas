@@ -123,8 +123,10 @@ class UserComponent extends Component
         $user->admin = $this->admin;
         $user->active = $this->active;
 
+         // Solo cambiar la contraseña si está presente
         if($this->password){
-            $user->password = $this->password;
+            // Cifrar la contraseña antes de guardarla
+            $user->password = bcrypt($this->password);
         }
 
         $user->update();
@@ -153,14 +155,10 @@ class UserComponent extends Component
         
         $user = User::findOrfail($id);
 
-        if($user->image!=null){
-            Storage::delete('public/'.$user->image->url);
-            $user->image()->delete();
-        }
+        $user->active = false;
+        $user->save();
 
-        $user->delete();
-
-        $this->dispatch('msg','Usuario eliminado correctamente.');
+        $this->dispatch('msg','Usuario desactivado correctamente.');
     }
     
     // Metodo encargado de la limpieza

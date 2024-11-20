@@ -76,6 +76,7 @@ class Inicio extends Component
         return User::select('users.id','users.name','users.admin',DB::raw('SUM(sales.total) as total'))
         ->join('sales','sales.user_id','=','users.id')
         ->whereYear('sales.fecha',date("Y"))
+        ->where('sales.estadoVenta', 1)
         ->groupBy('users.id', 'users.name')
         ->orderBy('total', 'desc')
         ->take(5)

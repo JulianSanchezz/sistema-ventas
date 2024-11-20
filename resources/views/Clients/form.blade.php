@@ -5,17 +5,19 @@
             {{-- INPUT NOMBRE --}}
             <div class="form-group col-md-6">
                 <label for="name">Nombre:</label>
-                <input wire:model='name' type="text" class="form-control" placeholder="Nombre" id="name">
+                <input wire:model='name' type="text" class="form-control" placeholder="Nombre" id="name" onkeypress="return /[a-zA-Z\s]/i.test(event.key)">
                 @error('name')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror
             </div>
 
+            
+
 
              {{-- INPUT DNI --}}
              <div class="form-group col-md-6">
                 <label for="identificacion">Dni:</label>
-                <input wire:model='identificacion' type="text" class="form-control" placeholder="identificacion" id="identificacion">
+                <input wire:model='identificacion' type="text" class="form-control" placeholder="identificacion" id="identificacion" onkeypress="return /[0-9]/i.test(event.key)">
                 @error('identificacion')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror
@@ -34,7 +36,7 @@
               {{-- INPUT telefono --}}
               <div class="form-group col-md-6">
                 <label for="telefono">Telefono:</label>
-                <input wire:model='telefono' type="text" class="form-control" placeholder="Telefono" id="telefono">
+                <input wire:model='telefono' type="text" class="form-control" placeholder="Telefono" id="telefono" onkeypress="return /[0-9]/i.test(event.key)">
                 @error('telefono')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror
@@ -53,11 +55,12 @@
             {{-- INPUT CUIL --}}
             <div class="form-group col-md-6">
                 <label for="cuit">Cuit/Cuil:</label>
-                <input wire:model='cuit' type="text" class="form-control" placeholder="Cuit/Cuil" id="cuit">
+                <input wire:model='cuit' type="text" class="form-control" placeholder="Cuit/Cuil" id="cuit" onkeypress="return /[0-9]/i.test(event.key)">
                 @error('cuit')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror
             </div>
+
 
 
         </div>

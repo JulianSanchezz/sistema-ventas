@@ -52,7 +52,7 @@
             {{-- Input Name --}}
             <div class="form-group col-md-5">
                 <label for="name">Nombre:</label>
-                <input wire:model='name' type="text" class="form-control" placeholder="Nombre tienda" id="name">
+                <input wire:model='name' type="text" class="form-control" placeholder="Nombre tienda" id="name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
                 @error('name')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror
@@ -71,14 +71,14 @@
             {{-- Input Telefono --}}
             <div class="form-group col-md-5">
                 <label for="telefono">Telefono:</label>
-                <input wire:model='telefono' type="text" class="form-control" placeholder="Telefono tienda" id="telefono">
+                <input wire:model='telefono' type="number" class="form-control" placeholder="Telefono tienda" id="telefono" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                 @error('telefono')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror
             </div>
 
 
-            {{-- Input Telefono --}}
+            {{-- Input Email --}}
             <div class="form-group col-md-7">
                 <label for="email">Email:</label>
                 <input wire:model='email' type="email" class="form-control" placeholder="Email tienda" id="email">
@@ -99,7 +99,7 @@
             {{-- Input Ciudad --}}
             <div class="form-group col-md-7">
                 <label for="ciudad">Ciudad:</label>
-                <input wire:model='ciudad' type="text" class="form-control" placeholder="Ciudad tienda" id="ciudad">
+                <input wire:model='ciudad' type="text" class="form-control" placeholder="Ciudad tienda" id="ciudad" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')">
                 @error('ciudad')
                     <div class="alert alert-danger w-100 mt-2">{{$message}}</div>
                 @enderror

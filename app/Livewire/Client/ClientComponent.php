@@ -26,6 +26,8 @@ class ClientComponent extends Component
     public $email;
     public $empresa;
     public $cuit;
+    public $clientActive;
+    
     
     public function render()
     {
@@ -36,7 +38,8 @@ class ClientComponent extends Component
         $this->totalRegistros = Client::count();
         
         $clientes = Client::where('name','like','%'.$this->search.'%')
-            ->orderBy('id','desc')
+            ->orderBy('clientActive', 'desc')
+            ->orderBy('Id','desc')
             ->paginate($this->cant);
        
         return view('livewire.client.client-component',[
@@ -112,6 +115,8 @@ class ClientComponent extends Component
         $client->email = $this->email;
         $client->empresa = $this->empresa;
         $client->cuit = $this->cuit;
+     
+        $client->clientActive = $this->clientActive ?? 0; 
 
         $client->update();
 
@@ -125,16 +130,26 @@ class ClientComponent extends Component
     #[On('destroyClient')]
     public function destroy($id){
         
-        $client = Client::findOrfail($id);
-        $client->delete();
+        $client = Client::findOrFail($id);
+        $client->clientActive = false;
+        $client->save();
 
-        $this->dispatch('msg','Cliente eliminado correctamente.');
+        $this->dispatch('msg','Cliente dado de baja correctamente.');
     }
     
-
 
     public function clean(){
         $this->reset(['name','identificacion','telefono','email','empresa','cuit']);
         $this->resetErrorBag();
+    }
+
+
+    public function activarCliente($id)
+    {
+        $client = Client::findOrFail($id);
+        $client->clientActive = true;
+        $client->save();
+
+        $this->dispatch('msg', 'Cliente activado correctamente.');
     }
 }
