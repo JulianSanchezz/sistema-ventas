@@ -13,7 +13,6 @@ use App\Models\Cart;
 use Livewire\Attributes\On;
 use Illuminate\Support\Facades\DB;
 
-
 #[Title('Ventas')]
 class SaleCreate extends Component
 {
@@ -57,62 +56,61 @@ class SaleCreate extends Component
 
     //crear venta
     public function createSale()
-    {
-        $cart = Cart::getCart();
-    
-        // Verificar si el carrito está vacío
-        if (count($cart) == 0) {
-            $this->dispatch('msg', 'No hay productos en el carrito.', 'danger');
-            return;
-        }
-    
-        if ($this->pago === null || $this->pago <= 0 || $this->pago < Cart::getTotal()) {
-        if ($this->pago === null || $this->pago <= 0) {
-            $this->dispatch('msg', 'Por favor, ingrese un monto válido para el cobro.', 'danger');
-            return;
-        }
-    
-        // Verificar que el monto sea suficiente
-        if ($this->pago < Cart::getTotal()) {
-            $this->dispatch('msg', 'El monto ingresado es insuficiente para realizar la venta.', 'danger');
-            return;
-        }
-    
-        // Calcular el cambio
-        $this->devuelve = $this->pago - Cart::getTotal();
-    
-        // Iniciar la transacción
-        DB::transaction(function () {
-            $sale = new Sale();
-            $sale->total = Cart::getTotal();
-            $sale->pago = $this->pago;
-            $sale->user_id = userID();
-            $sale->client_id = $this->client;
-            $sale->fecha = date('Y-m-d');
-            $sale->save();
-    
-            foreach (\Cart::session(userID())->getContent() as $product) {
-                $item = new Item();
-                $item->name = $product->name;
-                $item->price = $product->price;
-                $item->qty = $product->quantity;
-                $item->image = $product->associatedModel->imagen;
-                $item->product_id = $product->id;
-                $item->fecha = date('Y-m-d');
-                $item->save();
-    
-                $sale->items()->attach($item->id, ['qty' => $product->quantity, 'fecha' => date('Y-m-d')]);
-    
-                Product::find($product->id)->decrement('stock', $product->quantity);
-            }
-    
-            Cart::clear();
-            $this->reset(['pago', 'devuelve', 'client']);
-            $this->dispatch('msg', 'Venta creada correctamente.', 'success');
-        });
+{
+    $cart = Cart::getCart();
+
+    // Verificar si el carrito está vacío
+    if (count($cart) == 0) {
+        $this->dispatch('msg', 'No hay productos en el carrito.', 'danger');
+        return;
     }
 
+    // Validar el monto ingresado en "pago"
+    if ($this->pago === null || !is_numeric($this->pago) || $this->pago <= 0) {
+        $this->dispatch('msg', 'Por favor, ingrese un monto válido para el cobro.', 'danger');
+        return;
+    }
+
+    // Verificar que el monto sea suficiente
+    if ($this->pago < Cart::getTotal()) {
+        $this->dispatch('msg', 'El monto ingresado es insuficiente para realizar la venta.', 'danger');
+        return;
+    }
+
+    // Calcular el cambio
+    $this->devuelve = $this->pago - Cart::getTotal();
+
+    // Iniciar la transacción
+    DB::transaction(function () {
+        $sale = new Sale();
+        $sale->total = Cart::getTotal();
+        $sale->pago = $this->pago;
+        $sale->user_id = userID();
+        $sale->client_id = $this->client;
+        $sale->fecha = date('Y-m-d');
+        $sale->save();
+
+        foreach (\Cart::session(userID())->getContent() as $product) {
+            $item = new Item();
+            $item->name = $product->name;
+            $item->price = $product->price;
+            $item->qty = $product->quantity;
+            $item->image = $product->associatedModel->imagen;
+            $item->product_id = $product->id;
+            $item->fecha = date('Y-m-d');
+            $item->save();
+
+            $sale->items()->attach($item->id, ['qty' => $product->quantity, 'fecha' => date('Y-m-d')]);
+
+            Product::find($product->id)->decrement('stock', $product->quantity);
+        }
+
+        Cart::clear();
+        $this->reset(['pago', 'devuelve', 'client']);
+        $this->dispatch('msg', 'Venta creada correctamente.', 'success');
+    });
 }
+
     
 
 
