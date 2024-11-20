@@ -149,19 +149,19 @@
 
 ### Eliminación de producto con ventas realizadas
 - **Error econtrado:** La aplicación permite eliminar un producto que tiene ventas asociadas, y al acceder a las ventas, el producto eliminado ya no está disponible en el historial de la venta.
-- **Solucion:** se agrego una columna para manejar el estado de las ventas y productos. si el producto se desactiva(dar de baja) aun asi se puede visualiar el historial de las ventas con productos que ya no se venden mas o stan de baja.
+- **Solucion:** se agrego una columna para manejar el estado de las ventas y productos. si el producto se desactiva (dar de baja) aun asi se puede visualiar el historial de las ventas con productos que ya no se venden mas o estan de baja.
 
-### 4. **Error con el Stock Mínimo y Máximo en el Modal de Producto**
+### Error con el Stock Mínimo y Máximo en el Modal de Producto
 - **Error encontrado:** Se detectó un error en el modal de productos donde los valores de `stock mínimo` y `stock máximo` no se validaban correctamente. Esto causaba que los valores ingresados no respetaran la lógica de negocio establecida para el manejo del stock. 
-- **Solucion:** 
+- **Solucion:** Se corrigió la lógica para evitar que el valor del `stock máximo` se autorellenara en el campo de `stock mínimo`. Ahora, los campos son independientes y el usuario debe ingresar valores diferentes en cada uno si es necesario
 
 ## Módulo Ventas
 
-## Registro de ventas con pago inferior al precio de venta
+### Registro de ventas con pago inferior al precio de venta
 - **Error econtrado:** Si el monto del pago es menor que el precio de venta, la venta se puede registrar igualmente, lo que genera un vuelto en números negativos.
-- **Solucion:** se agrego una condicion pago es menor que el total no se realiza la venta.
+- **Solucion:** se agrego una condicion pago si es menor que el total no se realiza la venta.
 
-## Problema con el botón de editar en la lista de ventas
+### Problema con el botón de editar en la lista de ventas
 - **Error econtrado:** El botón "Editar" en la lista de ventas no funciona correctamente y no permite modificar las ventas registradas.
 - **Solucion:** se creo el componente para editar la venta y su logica
 
@@ -187,15 +187,16 @@
 
 ## Modulo Shop
 
-## Restricciones faltantes en los campos de texto
- **Error econtrado:** No existen restricciones en los campo "Ciudad", lo que permite ingresar valores numéricos en estos campos. El mismo comportamiento se presenta en el campo "Teléfono", donde no se genera un error si se ingresan caracteres no numéricos.
- - **Solucion:** se restringio el input del campo telefono, donde ingresen solo numeros, campo ciudad tambien
+### Restricciones faltantes en los campos de texto
+- **Error econtrado:** No existen restricciones en los campo "Ciudad", lo que permite ingresar valores numéricos en estos campos. El mismo comportamiento se presenta en el campo "Teléfono", donde no se genera un error si se ingresan caracteres no numéricos.
+- **Solucion:** se restringio el input del campo telefono, donde ingresen solo numeros, campo ciudad tambien
 
 ## Modulo Inicio
  
 - **Error encontrado:** si un vendedor tiene registrada ventas de telefonos por ejemplo y damos de baja el producto telefono. Ya no muestra sus ventas
 - **Solucion:** se agrego la condicion que muestre todas las ventas aunque esten de baja
 
+##
 - *Tiempo estimado:* 15hs.
 - *Tiempo real:* 8hs
 
