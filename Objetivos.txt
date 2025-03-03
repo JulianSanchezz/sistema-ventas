@@ -1,0 +1,64 @@
+Objetivos Logrados (Mínimos)
+- Identificación de requerimientos básicos por módulo:
+Se definieron los objetivos mínimos de cada módulo: ventas, inventarios, clientes y reportes.
+Asegurar que cada módulo cumple con los requerimientos iniciales para funcionalidad básica.
+
+- Selección del framework:
+Se eligió Laravel como framework principal por su compatibilidad con el proyecto y capacidad de escalar.
+
+- Implementación inicial de pruebas (tests):
+Creación de unit tests y pruebas funcionales para garantizar la calidad del código.
+
+- Diseño inicial del sistema:
+Desarrollo del diseño preliminar de la interfaz de usuario, incluyendo pantallas clave como login y
+gestión de inventarios.
+
+- Almacenamiento inicial en SQLite:
+Se estableció SQLite como solución temporal para almacenamiento de datos mientras se evalúan opciones
+escalables.
+
+- Gestión de autenticación y roles de usuario:
+Implementación de un sistema de autenticación robusto con Laravel, incluyendo la asignación de roles
+(como administrador y vendedor) para controlar el acceso a los distintos módulos del sistema.
+
+- Despliegue de repositorio compartido:
+Implementación de un repositorio centralizado en Git para colaboración entre desarrolladores.
+
+
+Objetivos Pendientes (Maximos)
+- Facturación en AFIP:
+Implementar la integración con la API de AFIP para emitir facturas electrónicas de acuerdo con las 
+normativas fiscales.
+Configurar tipos de comprobantes (A, B, etc.) según las necesidades de cada sucursal
+
+- Migración de base de datos a MySQL:
+Migrar la base de datos desde SQLite a MySQL debido a limitaciones de almacenamiento y escalabilidad 
+en el hosting actual.
+Diseñar el esquema para garantizar integridad y compatibilidad con el sistema actual.
+
+- Gestión de datos por sucursales:
+Permitir el acceso a información específica por sucursal (ventas, stock, clientes).
+Diseñar un sistema centralizado que permita distinguir y sincronizar datos entre sucursales.
+
+- Relevamiento de requerimientos con cliente externo:
+Contactar a un cliente externo para obtener un análisis detallado de requerimientos adicionales, como 
+reportes personalizados, manejo de roles avanzados, etc.
+
+- Optimización del diseño y usabilidad:
+Refinar la interfaz gráfica para mejorar la experiencia del usuario (UX/UI).
+Aplicar principios de diseño accesible para personas con discapacidades.
+
+- Automatización de reportes:
+Generar reportes automáticos sobre métricas clave (ventas, inventario, clientes) para ayudar en la toma de 
+decisiones estratégicas.
+
+- Seguridad del sistema:
+Implementar autenticación de dos factores (2FA) para mayor seguridad.
+Realizar auditorías de seguridad para proteger la información confidencial.
+
+- Módulo de análisis y estadísticas:
+Crear un panel de estadísticas para visualizar en tiempo real los datos de ventas, tendencias y 
+comportamiento de clientes.
+
+- Implementación de notificaciones:
+Notificaciones por correo electrónico o SMS para alertar sobre compras, inventario bajo, etc.
