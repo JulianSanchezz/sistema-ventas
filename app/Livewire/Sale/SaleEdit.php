@@ -80,7 +80,6 @@ class SaleEdit extends Component
         $this->dispatch('msg','Venta editada correctamente','success',$this->sale->id);
 
 
-
     }
 
     public function getItemsToCart()

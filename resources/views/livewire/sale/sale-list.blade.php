@@ -26,15 +26,15 @@
        <x-table>
           <x-slot:thead>
              <th>ID</th>
-             <th>ClienteS</th>
+             <th>Clientes</th>
              <th>Total</th>
              <th>Productos</th>
              <th>Articulos</th>
              <th>Fecha</th>
              <th width="3%">...</th>
              <th width="3%">...</th>
-             <th width="3%">...</th>
-             <th width="3%">...</th>
+             {{-- <th width="3%">...</th> --}}
+             {{-- <th width="3%">...</th> --}}
  
           </x-slot>
 
@@ -81,18 +81,23 @@
                         <i class="far fa-eye"></i>
                     </a>
                 </td>
-                <td>
-                   {{-- boton editar --}}
-                   <a href="{{route('sales.edit',$sale)}}" class="btn btn-primary btn-sm" title="Editar">
-                    <i class="far fa-edit"></i>
+                {{-- 
+                <td> BOTON EDITAR
+                    <a href="{{route('sales.edit',$sale)}}" class="btn btn-primary btn-sm" title="Editar">
+                        <i class="far fa-edit"></i>
                     </a>
-                </td>
+                    
+                </td> 
+                --}}
+
+            {{--
                 <td>
-                    {{-- emitimos un evento y pasamos el id --}}
+                     emitimos un evento y pasamos el id 
                     <a wire:click="$dispatch('delete',{id: {{$sale->id}}, eventName:'destroySale'})" class="btn btn-danger btn-sm" title="Eliminar">
                         <i class="far fa-trash-alt"></i>
                     </a>
                 </td>
+            --}}
              </tr>
 
              @empty

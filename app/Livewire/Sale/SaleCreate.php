@@ -112,8 +112,6 @@ class SaleCreate extends Component
 }
 
     
-
-
     //value es el valor de lo que tengamos en el input de pago
     public function updatingPago($value){
         $this->updating=1;
