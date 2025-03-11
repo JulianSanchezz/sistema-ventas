@@ -55,7 +55,7 @@
 
              {{-- input precio venta --}}
              <div class="form-group col-md-4">
-                <label for="precio_venta">Precio de compra:</label>
+                <label for="precio_venta">Precio de venta:</label>
                 <input wire:model='precio_venta' min="0" step="any" type="number" class="form-control" placeholder="Precio Venta" id="precio_venta">
                 @error('precio_venta')
                     <div class="alert alert-danger w-100 mt-3">{{ $message }}</div>

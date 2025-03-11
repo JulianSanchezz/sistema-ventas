@@ -188,7 +188,7 @@ class CategoryComponent extends Component
         $category->categoriaEstado = true;
         $category->save();
 
-        $this->dispatch('msg', 'Categoria restaurado correctamente.');
+        $this->dispatch('msg', 'Categoria restaurada correctamente.');
     }
 
 

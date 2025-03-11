@@ -13,20 +13,21 @@ class CategoryComponentTest extends TestCase{
     use RefreshDatabase; // para limpiar la base de datos entre pruebas
 
     /** @test */
-    public function it_can_create_a_new_category()
+    public function test_it_can_create_a_new_category()
     {
-        // Simular el componente Livewire y llenar el formulario para crear una nueva categoría
+        // Simula el componente Livewire
         Livewire::test(CategoryComponent::class)
-            ->set('name', 'Nueva Categoria')
-            ->call('store')
-            ->assertDispatched('msg', 'Categoria creada correctamente');  // Verificar mensaje de éxito
-
-        // Verificar que la categoría se creó en la base de datos
+            ->set('name', 'Nueva Categoria') // Configura el nombre de la categoría
+            ->call('store') // Llama al método 'store'
+            ->assertDispatched('msg', 'Categoría creada correctamente');  // Verifica si se dispara el evento con el mensaje
+    
+        // Verifica que la categoría se haya creado en la base de datos
         $this->assertDatabaseHas('categories', [
-            'name' => 'Nueva Categoria'
+            'name' => 'Nueva Categoria',
+            'categoriaEstado' => true, 
         ]);
     }
-
+    
     /** @test */
     public function it_can_delete_a_category()
     {
@@ -34,11 +35,14 @@ class CategoryComponentTest extends TestCase{
         $category = Category::factory()->create(['name' => 'Categoria para eliminar']);
 
         Livewire::test(CategoryComponent::class)
-            ->call('destroy', $category->id) 
-            ->assertDispatched('msg', 'Categoria eliminada correctamente'); 
+            ->call('destroy', $category->id)
+            ->assertDispatched('msg', 'Categoría desactivada correctamente.', 'success');
 
-        //verificamos en la base
-        $this->assertDatabaseMissing('categories', ['id' => $category->id]);
+        // Verificar que la categoría fue desactivada (baja lógica)
+        $this->assertDatabaseHas('categories', [
+            'id' => $category->id,
+            'categoriaEstado' => false,
+        ]);
     }
 
     /** @test */

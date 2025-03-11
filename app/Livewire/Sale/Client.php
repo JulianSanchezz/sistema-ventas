@@ -26,7 +26,7 @@ class Client extends Component
     {
         return view('livewire.sale.client',[
             //definimos una variable y le pasamos los clientes
-            "clients" =>Cliente::all()
+            "clients" => Cliente::where('clientActive', 1)->get() // Filtra por los clientes activos
         ]);
     }
 
@@ -46,7 +46,7 @@ class Client extends Component
     //por defecto pasamos el cliente generico
     public function nameClient($id = 1)
     {
-        $findClient = Cliente::where('clienteActive', 1)->find($id);
+        $findClient = Cliente::where('clientActive', 1)->find($id);
 
         // Verifica si el cliente existe
         $this->nameClient = $findClient ? $findClient->name : 'Cliente no encontrado';

@@ -19,9 +19,11 @@ class Product extends Model
     }
 
     //desde la instancia del producto accedemos a la categoria
-    public function category(){
-        return $this->belongsTo(Category::class);
+     public function category(){
+         return $this->belongsTo(Category::class);
     }
+
+   
 
 
     //Atributos

@@ -7,7 +7,7 @@ use App\Models\Category;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class CategoryShowTest extends TestCase
+class CategoryShowUnitTest extends TestCase
 {
     /** @test */
     public function test_it_can_initialize_with_a_category()

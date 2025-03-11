@@ -151,15 +151,21 @@ class UserComponent extends Component
     }
 
     #[On('destroyUser')]
-    public function destroy($id){
-        
-        $user = User::findOrfail($id);
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+
+        if (auth()->id() == $user->id) {
+            $this->dispatch('msg', 'No puedes desactivar tu propio usuario.', 'warning');
+            return;
+        }
 
         $user->active = false;
         $user->save();
 
-        $this->dispatch('msg','Usuario desactivado correctamente.');
+        $this->dispatch('msg', 'Usuario desactivado correctamente.');
     }
+
     
     // Metodo encargado de la limpieza
     public function clean(){

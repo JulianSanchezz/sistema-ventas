@@ -48,13 +48,17 @@ class UserComponentTest extends TestCase
 
     public function test_it_can_delete_a_user()
     {
-        $user = User::factory()->create();
+        $user = User::factory()->create(['active' => true]);
 
         Livewire::test(UserComponent::class)
             ->call('destroy', $user->id)
-            ->assertDispatched('msg', 'Usuario eliminado correctamente.');
-
-        $this->assertDatabaseMissing('users', ['id' => $user->id]);
+            ->assertDispatched('msg', 'Usuario desactivado correctamente.');
+    
+        // Verificar que el usuario sigue en la base de datos, pero está desactivado
+        $this->assertDatabaseHas('users', [
+            'id' => $user->id,
+            'active' => false, // Confirmar la baja lógica
+        ]);
     }
 
     

@@ -1,6 +1,6 @@
 <div>
 
-   <x-card cardTitle='Bienvenidos' cardFooter='card footer'> {{-- pasamos los nombres a las variables de lo que deseamos en el titulo del componente--}}
+   <x-card cardTitle='Bienvenidos' cardFooter=''> {{-- pasamos los nombres a las variables de lo que deseamos en el titulo del componente--}}
 
             <x-slot:cardTools>
                   <a href="{{route('sales.list')}}" class="btn btn-primary">

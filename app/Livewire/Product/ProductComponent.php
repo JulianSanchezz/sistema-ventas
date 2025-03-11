@@ -102,7 +102,7 @@ class ProductComponent extends Component
         }
         
          $this->dispatch('close-modal','modalProduct');
-         $this->dispatch('msg','Producto creada correctamente');
+         $this->dispatch('msg','Producto creado correctamente');
          $this->clean();
     }
 
@@ -225,12 +225,25 @@ class ProductComponent extends Component
 
     public function activate($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::with('category')->findOrFail($id);
+    
+        // Verificar si la categoría existe y está activada
+        if (!$product->category) {
+            $this->dispatch('msg', 'No se encontró la categoría del producto.', 'warning');
+            return;
+        } elseif (!$product->category->categoriaEstado) { // Usar categoriaEstado en lugar de active
+            $this->dispatch('msg', 'No se puede activar el producto porque su categoría está desactivada.', 'warning');
+            return;
+        }
+    
         $product->active = true;
         $product->save();
-
+    
         $this->dispatch('msg', 'Producto restaurado correctamente.');
     }
+    
+
+
 
 
 

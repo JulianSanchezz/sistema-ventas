@@ -59,7 +59,7 @@ Route::get('/clientes/{client}',ClientShow::class)->name('clients.show')->middle
 
 Route::get('/ventas/crear',SaleCreate::class)->name('sales.create')->middleware(['auth']);
 
-Route::get('/sales',SaleList::class)->name('sales.list')->middleware(['auth','admin']);
+Route::get('/sales',SaleList::class)->name('sales.list')->middleware(['auth']);
 
 Route::get('/sales/{sale}',SaleShow::class)->name('sales.show')->middleware(['auth']);
 
