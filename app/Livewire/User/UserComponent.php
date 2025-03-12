@@ -105,66 +105,83 @@ class UserComponent extends Component
 
     }
 
-    public function update(User $user){
-        // dump($category);
-        $rules = [
-            'name' => 'required|min:5|max:255',
-            'email' => 'required|email|max:255|unique:users,id,'.$this->Id,
-            'password' => 'min:5|nullable',
-            're_password' => 'same:password',
-            'image' => 'image|max:1024|nullable'
-        ];
-
-
-        $this->validate($rules);
-
-        $user->name = $this->name;
-        $user->email = $this->email;
-        $user->admin = $this->admin;
-        $user->active = $this->active;
-
-         // Solo cambiar la contraseña si está presente
-        if($this->password){
-            // Cifrar la contraseña antes de guardarla
-            $user->password = bcrypt($this->password);
-        }
-
-        $user->update();
-
-        if($this->image){
-
-            if($user->image!=null){
-                Storage::delete('public/'.$user->image->url);
-                $user->image()->delete();
-            }
-
-            $customName = 'users/'.uniqid().'.'.$this->image->extension();
-            $this->image->storeAs('public',$customName);
-            $user->image()->create(['url'=>$customName]);
-        }
-
-        $this->dispatch('close-modal','modalUser');
-        $this->dispatch('msg','Usuario editado correctamente.');
-
-        $this->clean();
-
+    public function update(User $user)
+{
+    // Verificar si el usuario autenticado intenta desactivar a otro administrador
+    if (auth()->user()->admin && $user->admin && !$this->active) {
+        $this->dispatch('msg', 'No puedes desactivar a otro administrador.', 'warning');
+        return;
     }
+
+    // Definir las reglas de validación
+    $rules = [
+        'name' => 'required|min:5|max:255',
+        'email' => 'required|email|max:255|unique:users,id,'.$this->Id,
+        'password' => 'min:5|nullable',
+        're_password' => 'same:password',
+        'image' => 'image|max:1024|nullable'
+    ];
+
+    $this->validate($rules);
+
+    // Actualizar los campos del usuario
+    $user->name = $this->name;
+    $user->email = $this->email;
+    $user->admin = $this->admin;
+    $user->active = $this->active;
+
+    // Solo cambiar la contraseña si está presente
+    if ($this->password) {
+        $user->password = bcrypt($this->password);
+    }
+
+    // Guardar los cambios en el usuario
+    $user->update();
+
+    // Manejo de la imagen
+    if ($this->image) {
+        if ($user->image != null) {
+            Storage::delete('public/' . $user->image->url);
+            $user->image()->delete();
+        }
+
+        $customName = 'users/' . uniqid() . '.' . $this->image->extension();
+        $this->image->storeAs('public', $customName);
+        $user->image()->create(['url' => $customName]);
+    }
+
+    // Cerrar el modal y mostrar mensaje
+    $this->dispatch('close-modal', 'modalUser');
+    $this->dispatch('msg', 'Usuario editado correctamente.');
+
+    $this->clean();
+}
+
 
     #[On('destroyUser')]
     public function destroy($id)
     {
         $user = User::findOrFail($id);
 
+        // Verificar si el usuario autenticado está intentando desactivar su propio usuario
         if (auth()->id() == $user->id) {
             $this->dispatch('msg', 'No puedes desactivar tu propio usuario.', 'warning');
             return;
         }
 
+        // Verificar si el usuario autenticado es un administrador y si el usuario a desactivar también lo es
+        if (auth()->user()->admin && $user->admin) {
+            $this->dispatch('msg', 'No puedes desactivar a otro administrador.', 'warning');
+            return;
+        }
+
+        // Desactivar el usuario
         $user->active = false;
         $user->save();
 
         $this->dispatch('msg', 'Usuario desactivado correctamente.');
     }
+
 
     
     // Metodo encargado de la limpieza

@@ -59,12 +59,8 @@ Route::get('/clientes/{client}',ClientShow::class)->name('clients.show')->middle
 
 Route::get('/ventas/crear',SaleCreate::class)->name('sales.create')->middleware(['auth']);
 
-<<<<<<< HEAD
 Route::get('/sales', SaleList::class)->name('sales.list')->middleware(['auth']);
 
-=======
-Route::get('/sales',SaleList::class)->name('sales.list')->middleware(['auth']);
->>>>>>> b3ee6b2a58a2dad51d8ca116b95275ddf7d3296d
 
 Route::get('/sales/{sale}',SaleShow::class)->name('sales.show')->middleware(['auth']);
 
