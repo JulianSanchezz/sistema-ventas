@@ -156,7 +156,7 @@ class UserComponent extends Component
         $user = User::findOrFail($id);
 
         if (auth()->id() == $user->id) {
-            $this->dispatch('msg', 'No puedes desactivar tu propio usuario.');
+            $this->dispatch('msg', 'No puedes desactivar tu propio usuario.', 'warning');
             return;
         }
 

@@ -1,6 +1,6 @@
 <div class="card card-info">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-wallet"></i> Pago </h3>
+        <h3 class="card-title"><i class="fas fa-wallet"></i> A cobrar </h3>
 
         <div class="card-tools d-flex justify-content-center align-self-center">
 

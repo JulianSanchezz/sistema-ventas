@@ -52,17 +52,18 @@ class ClientComponentTest extends TestCase
     public function test_it_deletes_a_client()
     {
         $client = Client::factory()->create([
-            'name' => 'Cliente a eliminar', 
+            'name' => 'Cliente a eliminar',
             'identificacion' => '123456789'
         ]);
-
+    
         Livewire::test(ClientComponent::class)
             ->call('destroy', $client->id)
-            ->assertDispatched('msg', 'Cliente eliminado correctamente.');
-
-        $this->assertDatabaseMissing('clients', [
+            ->assertDispatched('msg', 'Cliente dado de baja correctamente.');
+    
+        $this->assertDatabaseHas('clients', [
             'id' => $client->id,
-            'name' => 'Cliente a eliminar'
+            'name' => 'Cliente a eliminar',
+            'clientActive' => false, // Verificar que se hizo la baja lógica
         ]);
     }
 }

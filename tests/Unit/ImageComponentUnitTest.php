@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Item;
 
-class ImageComponentTest extends TestCase
+class ImageComponentUnitTest extends TestCase
 {
         /** @test */
         public function test_it_checks_image_and_properties_of_item()

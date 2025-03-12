@@ -1,6 +1,6 @@
 <x-card cardTitle='Detalles del Producto'>
     <x-slot:cardTools>
-        <a href="{{ route('categories') }}" class="btn btn-primary">
+        <a href="{{ route('products') }}" class="btn btn-primary">
             <i class="fas fa-arrow-circle-left"></i> Regresar</a>
     </x-slot>
               <!-- Default box -->
@@ -136,7 +136,7 @@
                   {!!$product->precio!!}
                 </h2>
                 <h4 class="mt-0">
-                  <small>Precio venta </small>
+                  <small>Precio venta</small>
                 </h4>
               </div>
               <div class="bg-gray py-2 px-3 mt-4 col-md-6">

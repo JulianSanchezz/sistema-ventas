@@ -35,6 +35,7 @@
             </div>
             
         </div>
+        <!--
         <div class="col-md-8">
             {{-- <table class="table text-center">
                 <thead>
@@ -78,7 +79,7 @@
                 </tbody> --}}
             </table>
             {{-- {{$sales->links()}} --}}
-        </div>    
+        </div>    -->
     </div>
 
  </x-card>

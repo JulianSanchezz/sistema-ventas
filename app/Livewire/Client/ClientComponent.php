@@ -116,7 +116,7 @@ class ClientComponent extends Component
         $client->empresa = $this->empresa;
         $client->cuit = $this->cuit;
      
-        $client->clientActive = $this->clientActive ?? 0; 
+        $client->clientActive = $this->clientActive ?? 1; 
 
         $client->update();
 

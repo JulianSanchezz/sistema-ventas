@@ -57,17 +57,20 @@ class ProductComponentTest extends TestCase
         // Crear categoría y producto
         $category = Category::factory()->create();
         $product = Product::factory()->create(['category_id' => $category->id]);
-    
-        // Verificar que el producto y la imagen están en la base de datos
+
+        // Verificar que el producto está en la base de datos
         $this->assertDatabaseHas('products', ['id' => $product->id]);
-    
+
         // Simular la eliminación del producto en el componente Livewire
         Livewire::test(ProductComponent::class)
             ->call('destroy', $product->id) // Simula la eliminación del producto
-            ->assertDispatched('msg', 'Producto eliminado correctamente.'); // Verifica el mensaje
-    
-        // Verificar que el producto y la imagen han sido eliminados de la base de datos
-        $this->assertDatabaseMissing('products', ['id' => $product->id]);
+            ->assertDispatched('msg', 'Producto dado de baja correctamente.'); // Verifica el mensaje
+
+        // Verificar que el producto fue desactivado en lugar de eliminado físicamente
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'active' => false, // Confirma que el producto fue dado de baja
+        ]);
 
     }
 
