@@ -9,10 +9,10 @@
        <x-table>
           <x-slot:thead>
              <th>ID</th>
-             <th>Nombre</th>
-             <th width="3%">...</th>
-             <th width="3%">...</th>
-             <th width="3%">...</th>
+             <th>Imagen</th>
+             <th width="3%">Nombre</th>
+             <th width="3%">Email</th>
+             <th width="3%">Rol</th>
  
           </x-slot:thead>
 

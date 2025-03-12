@@ -36,7 +36,7 @@
             
         </div>
         <div class="col-md-8">
-            <table class="table text-center">
+            {{-- <table class="table text-center">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -46,7 +46,7 @@
                         <th>...</th>
                         
                     </tr>
-                </thead>
+                </thead> --}}
                 {{-- <tbody>
                     @foreach ($sales as $sale)
                     <tr>
